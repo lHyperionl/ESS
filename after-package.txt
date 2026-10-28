@@ -1,0 +1,1352 @@
+bun test v1.4.4 (38afee6c8)
+
+packages\utils\test\abortable.test.ts:
+(pass) untilAborted with an already-aborted signal > keeps observing a passed promise that rejects after the caller left [0.54ms]
+(pass) untilAborted with an already-aborted signal > never starts work passed as a function [0.15ms]
+
+packages\utils\test\acp.test.ts:
+(pass) ACP JSON-RPC transport > round-trips requests, notifications, and errors [2.02ms]
+(pass) ACP JSON-RPC transport > correlates out-of-order responses [0.19ms]
+(pass) ACP JSON-RPC transport > decodes split and batched NDJSON frames [0.13ms]
+(pass) ACP JSON-RPC transport > drains accepted inbound requests before resolving closed on clean EOF [26.75ms]
+(pass) ACP JSON-RPC transport > still fail-fast closes on read errors without waiting for inbound handlers [0.22ms]
+(pass) ACP JSON-RPC transport > matches the SDK error-code fixtures [0.14ms]
+(pass) ACP JSON-RPC transport > requestCancellable rejects the pending entry, notifies $/cancel_request, and ignores late responses [3.56ms]
+(pass) ACP JSON-RPC transport > requestPermissionWithCancel ends the client's inbound handler via its abort signal [1.41ms]
+(pass) ACP JSON-RPC transport > answers a peer $/cancel_request with -32800 on the wire when the dispatcher honors cancellation [0.33ms]
+(pass) ACP JSON-RPC transport > keeps an agent request running and answers with its real result after a peer $/cancel_request [0.22ms]
+(pass) ACP runtime schemas > accepts valid protocol vectors [0.18ms]
+(pass) ACP runtime schemas > rejects malformed protocol vectors [0.03ms]
+
+packages\utils\test\async.test.ts:
+(pass) sleepLong > waits until the requested monotonic deadline [0.35ms]
+(pass) sleepLong > waits across the native timer boundary without overflowing a timer [0.10ms]
+(pass) sleepLong > re-arms after early wakes until the full delay has elapsed [0.08ms]
+(pass) sleepLong > propagates an abort during a wait [0.10ms]
+(pass) sleepLong > rejects a pre-aborted zero-length sleep without arming a timer [0.09ms]
+
+packages\utils\test\binary.test.ts:
+(pass) isProbablyBinaryHeader > treats empty input as text [0.10ms]
+(pass) isProbablyBinaryHeader > flags a NUL byte as binary [0.24ms]
+(pass) isProbablyBinaryHeader > flags invalid UTF-8 without a NUL as binary [0.06ms]
+(pass) isProbablyBinaryHeader > accepts plain ASCII text [0.02ms]
+(pass) isProbablyBinaryHeader > accepts multibyte UTF-8 text [0.02ms]
+(pass) isProbablyBinaryHeader > tolerates a multibyte sequence truncated at the header boundary [0.03ms]
+(pass) isProbablyBinary / isProbablyBinarySync > classifies a binary file from disk (async + sync agree) [4.29ms]
+(pass) isProbablyBinary / isProbablyBinarySync > classifies a UTF-8 text file from disk as text [2.28ms]
+
+packages\utils\test\browsers.test.ts:
+(pass) Chrome-for-Testing layout goldens > linux [0.20ms]
+(pass) Chrome-for-Testing layout goldens > mac [0.01ms]
+(pass) Chrome-for-Testing layout goldens > mac_arm
+(pass) Chrome-for-Testing layout goldens > win32
+(pass) Chrome-for-Testing layout goldens > win64
+(pass) Chrome-for-Testing rejects linux/arm64 before producing archive or cache paths [0.23ms]
+123 | 			"nested fixture\n",
+124 | 		);
+125 | 		if (process.platform !== "win32") {
+126 | 			expect((await fs.stat(path.join(installed.path, "chrome-linux64/nested/data.txt"))).mode & 0o777).toBe(0o640);
+127 | 		}
+128 | 		expect(await fs.readlink(path.join(installed.path, "chrome-linux64/chrome-link"))).toBe("chrome");
+                        ^
+EINVAL: invalid argument, readlink 'C:\Users\DVIDTK~1\AppData\Local\Temp\pi-browsers-test-zPtnNP\chrome\linux-123.0.6312.58\chrome-linux64\chrome-link'
+    path: "C:\\Users\\DVIDTK~1\\AppData\\Local\\Temp\\pi-browsers-test-zPtnNP\\chrome\\linux-123.0.6312.58\\chrome-linux64\\chrome-link",
+ syscall: "readlink",
+   errno: -4071,
+    code: "EINVAL"
+
+      at async <anonymous> (C:\TUKE\5-ZS\ESS\oh-my-pi-testing\packages\utils\test\browsers.test.ts:128:19)
+(fail) install streams and extracts stored, deflated, nested, executable, and symlink entries [32.71ms]
+(pass) install extracts a member larger than the default 64 MiB archive cap [153.10ms]
+(pass) install rejects archive traversal [8.02ms]
+(pass) concurrent installs download once without replacing the winner's browser [105.45ms]
+(pass) a timed-out download releases its lock and partial archive so installation can be retried [20.37ms]
+(skip) network: downloads and installs the pinned Chrome-for-Testing build
+
+packages\utils\test\chalk.test.ts:
+(pass) chalk > matches chalk 5 ANSI bytes at color level 3 [0.20ms]
+(pass) chalk > reopens outer styles after nested and literal close sequences [0.08ms]
+(pass) chalk > matches truecolor hex and disabled output [0.18ms]
+(pass) chalk > downsamples a hex style created at a higher level after the level drops [0.06ms]
+(pass) chalk > joins arguments and shares mutable level across chains [0.02ms]
+(pass) chalk > honors FORCE_COLOR, NO_COLOR, TTY, TERM, and CI detection [0.05ms]
+
+packages\utils\test\cli-help.test.ts:
+(pass) run() per-command help > loads only the requested command [0.62ms]
+(pass) run() root help > renders static metadata without loading command modules [0.39ms]
+(pass) run() root help > preserves constructable commands for existing custom help callbacks [0.21ms]
+(pass) run() usage errors > prints a concise usage error instead of throwing on a missing required arg [0.51ms]
+(pass) run() usage errors > renders a required variadic arg without optional brackets [0.15ms]
+(pass) run() usage errors > prints a concise usage error for an unknown flag [0.17ms]
+
+packages\utils\test\color.test.ts:
+(pass) relativeLuminance (WCAG, linearized sRGB) > hits the extremes [0.09ms]
+(pass) relativeLuminance (WCAG, linearized sRGB) > linearizes — mid-gray is WCAG-dark (~0.21), not 0.5 [0.03ms]
+(pass) relativeLuminance (WCAG, linearized sRGB) > accepts #rgb shorthand and palette indices [0.06ms]
+(pass) relativeLuminance (WCAG, linearized sRGB) > returns undefined for malformed / var-ref input [0.01ms]
+(pass) colorLuma (perceptual classification) > parses hex, shorthand, and palette indices [0.02ms]
+(pass) colorLuma (perceptual classification) > returns undefined for malformed input
+(pass) hslToHex > maps primary hues at full saturation/half lightness [0.07ms]
+(pass) hslToHex > collapses to grayscale at zero saturation [0.02ms]
+(pass) OKLCH conversions > round-trips in-gamut colors through hexToOklch → oklchToHex [0.24ms]
+(pass) OKLCH conversions > reports near-zero chroma on the gray axis and matching lightness extremes [0.02ms]
+(pass) OKLCH conversions > gamut-maps out-of-sRGB chroma by desaturating, preserving lightness and hue [0.04ms]
+
+packages\utils\test\dates.test.ts:
+(pass) format > matches date-fns v4 goldens for every supported token [0.32ms]
+(pass) format > matches the used patterns at single-digit dates, year boundaries, midnight, and noon [0.12ms]
+(pass) format > matches date-fns quoted literal and quote escaping behavior [0.04ms]
+(pass) formatDistanceToNow > matches date-fns v4 goldens across every requested threshold [0.31ms]
+(pass) formatDistanceToNow > matches future suffixes and year-range wording [0.08ms]
+
+packages\utils\test\dirs-python-gateway.test.ts:
+(pass) python gateway directory > uses XDG state for the default agent profile [2.01ms]
+(pass) python gateway directory > keeps custom agent profiles isolated from XDG shared state [1.62ms]
+
+packages\utils\test\dirs-xdg.test.ts:
+(skip) XDG-aware runtime paths > routes skill descriptions db and predict state under an initialized $XDG_DATA_HOME/omp
+(skip) XDG-aware runtime paths > adopts legacy predict state once when XDG relocates it
+(skip) XDG-aware runtime paths > shares the global daemon runtime dir across profiles and custom agent dirs
+(pass) XDG-aware runtime paths > keeps paths under an explicit custom agent dir, ignoring XDG [3.97ms]
+
+packages\utils\test\dirs.test.ts:
+28 | 		});
+29 | 		process.env.PWD = os.tmpdir();
+30 | 		try {
+31 | 			getProjectDir();
+32 | 			cwd.mockRestore();
+33 | 			expect(fs.realpathSync(process.cwd())).toBe(fs.realpathSync(getProjectDir()));
+                                               ^
+error: expect(received).toBe(expected)
+
+Expected: "C:\Users\Dávid Tkáč\AppData\Local\Temp"
+Received: "C:\Users\DVIDTK~1\AppData\Local\Temp"
+
+      at <anonymous> (C:\TUKE\5-ZS\ESS\oh-my-pi-testing\packages\utils\test\dirs.test.ts:33:43)
+(fail) project directory state > enters an accessible fallback when process.cwd fails [3.23ms]
+(pass) project directory state > surfaces a native path-expansion failure instead of relocating the process [0.38ms]
+(pass) project directory state > treats denied stat as probeable rather than missing [0.54ms]
+(pass) project directory state > normalizes each containment operand only once [2.74ms]
+(pass) project directory state > keeps the previous directory when chdir fails [0.41ms]
+(pass) dated log path > names log files with the local day, matching the rotating sink [0.63ms]
+(pass) dated log path > keeps the local-day key under a forced non-UTC timezone [63.49ms]
+
+packages\utils\test\docx.test.ts:
+(pass) DOCX to HTML > matches mammoth for headings, formatting, style diagnostics, breaks, and footnotes [17.08ms]
+(pass) DOCX to HTML > matches mammoth for nested ordered and unordered numbering [1.85ms]
+(pass) DOCX to HTML > matches mammoth for hyperlinks and horizontally and vertically merged table cells [3.21ms]
+(pass) DOCX to HTML > matches the converter's mammoth image callback byte-for-byte [6.70ms]
+
+packages\utils\test\dom.test.ts:
+(pass) DOM scraper compatibility > matches linkedom golden extraction across real scraper pipelines [10.49ms]
+(pass) DOM scraper compatibility > parses tag soup, raw text, entities, and reparses innerHTML [1.04ms]
+(pass) DOM scraper compatibility > supports every selector family used by consumers [0.85ms]
+(pass) DOM scraper compatibility > supports tree mutation and sibling traversal [0.32ms]
+(pass) DOM scraper compatibility > renders and unmounts a React root [13.24ms]
+
+packages\utils\test\env.test.ts:
+(pass) getDbBusyTimeoutMs > defaults to the bounded headless timeout [0.08ms]
+(pass) getDbBusyTimeoutMs > keeps the interactive timeout for interactive hosts [0.02ms]
+(pass) parseEnvFile > ignores malformed names and nul-containing values [4.49ms]
+(pass) parseEnvFile > mirrors valid OMP_ variables to PI_ variables [4.60ms]
+(pass) parseEnvFile > matches Bun dotenv syntax for export prefixes and inline comments [3.18ms]
+(pass) parseEnvFile > keeps escaped quotes inside quoted values literal, matching Bun [4.51ms]
+(pass) parseEnvFile > parses quoted multiline and escaped-newline values across the whole file [7.83ms]
+(pass) filterProcessEnv > drops entries that cannot be passed to process spawn env [0.43ms]
+(pass) filterProcessEnv > drops macOS malloc stack logging toggles instead of forwarding disabled values [0.02ms]
+(pass) filterProcessEnv > preserves Windows-style variable names containing parentheses [0.02ms]
+(pass) filterChildShellEnv > removes quoted multiline project values without a launch snapshot [4.44ms]
+(pass) filterChildShellEnv > uses the supplied mode for an isolated environment and cwd [156.38ms]
+(pass) filterChildShellEnv > drops inherited git repo-location overrides [1.78ms]
+(pass) filterChildShellEnv > uses the launch mode when dotenv changes NODE_ENV [98.41ms]
+(skip) filterChildShellEnv > keeps filtering after the process working directory is deleted
+(pass) stripGitRepoLocationEnv > matches case-insensitively on win32 and exactly on POSIX [0.15ms]
+(pass) isBunTestRuntime > does not treat shared application env names as a test runner signal [142.76ms]
+(pass) isBunTestRuntime > honors the private test runner signal [64.04ms]
+(pass) isBunTestRuntime > recognizes Bun's underscore test entrypoints [76.15ms]
+(pass) $envExact > does not hijack a literal via a case-differing Windows system var [0.20ms]
+(pass) $envExact > still resolves a genuine exact-case reference on a case-insensitive env [0.03ms]
+(pass) $envExact > reads process.env by default [0.14ms]
+
+packages\utils\test\fetch-retry.test.ts:
+(pass) isUnexpectedSocketCloseMessage > recognizes Socket is closed [0.09ms]
+(pass) isUnexpectedSocketCloseMessage > recognizes Error: Socket is closed.
+(pass) isUnexpectedSocketCloseMessage > recognizes The socket connection was closed unexpectedly
+(pass) isUnexpectedSocketCloseMessage > does not match socket wording embedded in an application error [0.01ms]
+(pass) fetchWithRetry > routes requests through the `fetch` override when provided [0.43ms]
+(pass) fetchWithRetry > retries through the override on transient failures [1.61ms]
+(pass) fetchWithRetry > lets callers stop retries for deterministic response bodies [0.12ms]
+(pass) fetchWithRetry > returns retryable responses immediately when retry hints exceed the delay cap [0.10ms]
+(pass) fetchWithRetry > normalizes aborts during response backoff [11.56ms]
+(pass) fetchWithRetry > normalizes aborts during network-error backoff [11.82ms]
+(pass) fetchWithRetry > keeps the rejected fetch error reachable as the wrapped error's cause [0.31ms]
+(pass) fetchWithRetry > keeps the flattened `Network error:` wording for a direct cause [0.08ms]
+(pass) extractRetryHint > parses Devin 'Your limit will reset in 13 minutes' as 13 minutes [0.09ms]
+(pass) extractRetryHint > parses 'will reset in 2h' phrasing [0.02ms]
+(pass) extractRetryHint > parses OpenCode Go 'Resets in 45min' as 45 minutes [0.01ms]
+(pass) extractRetryHint > parses OpenCode Go compound 'Resets in 2hr 15min' as 2h15m [0.01ms]
+(pass) extractRetryHint > parses OpenCode Go day-unit resets [0.02ms]
+(pass) extractRetryHint > prefers the account reset window over a shorter retry hint [0.01ms]
+(pass) extractRetryHint > prefers a longer appended retry hint over a shorter account reset [0.03ms]
+(pass) extractRetryHint > prefers a longer legacy retry-after over a shorter reset phrase [0.01ms]
+(pass) extractRetryHint > parses x-ratelimit-reset epoch seconds in the body [0.02ms]
+(pass) extractRetryHint > parses retry-after-ms in error body [0.01ms]
+(pass) extractRetryHint > parses colon-delimited and spaced retry-after-ms forms [0.02ms]
+(pass) extractRetryHint > keeps a longer colon-delimited retry-after-ms over a shorter reset phrase [0.01ms]
+(pass) extractRetryHint > parses space-separated UTC absolute reset timestamp [0.09ms]
+(pass) extractRetryHint > parses ISO-separated UTC absolute reset timestamp
+(pass) extractRetryHint > parses explicit offset absolute reset timestamp
+(pass) extractRetryHint > prefers an absolute account reset over retry-after-ms [0.05ms]
+(pass) extractRetryHint > yields to the relative retry hint over a longer naive reset-at stamp [0.03ms]
+(pass) extractRetryHint > reads a naive Chinese reset stamp as UTC without a provider offset [0.21ms]
+(pass) extractRetryHint > applies naiveResetTimezoneOffset to a naive Chinese reset stamp [0.05ms]
+(pass) extractRetryHint > keeps a configured reset over a shorter retry-after-ms [0.04ms]
+(pass) extractRetryHint > preserves an explicit zero retry-after-ms as retry-now [0.01ms]
+(pass) extractRetryHint > preserves an explicit zero legacy retry-after as retry-now [0.01ms]
+(pass) extractRetryHint > treats elapsed x-ratelimit-reset epochs as retry-now [0.03ms]
+(pass) extractRetryHint > lets a longer reset phrase win over a zero retry hint [0.01ms]
+(pass) extractRetryHint > still returns undefined when only elapsed account resets are present [0.02ms]
+
+packages\utils\test\file-lock.test.ts:
+(pass) native file-lock ownership > a cancelled waiter never enters its critical section or releases the current owner [1.00ms]
+(pass) native file-lock ownership > process death hands ownership to B while excluding C [57.13ms]
+(pass) native file-lock ownership > a former owner's late release cannot unlock its successor [0.77ms]
+(pass) native file-lock ownership > withFileLock serializes N concurrent writers without lost updates [123.25ms]
+
+packages\utils\test\format.test.ts:
+(pass) formatDuration > clamps non-positive, NaN, and Infinity inputs to 0ms [0.11ms]
+(pass) formatDuration > formats sub-second, sub-minute, sub-hour, sub-day, and multi-day ranges [0.07ms]
+(pass) formatDuration > never prints a 60-second remainder at the minute boundary [0.02ms]
+
+packages\utils\test\frontmatter.test.ts:
+(pass) parseFrontmatter > accepts unquoted skill descriptions containing colon-space without warning [0.54ms]
+(pass) parseFrontmatter > still warns and falls back for unrecoverable malformed frontmatter [0.21ms]
+(pass) parseFrontmatter > reparses each fallback value so one malformed line can't corrupt its siblings [0.10ms]
+(pass) parseFrontmatter > keeps HTML comments in the body and plain documents [0.04ms]
+(pass) parseFrontmatter > strips HTML comments inside the frontmatter block without flattening nested values [0.04ms]
+(pass) parseFrontmatter > recovers frontmatter behind a leading HTML comment on its own line [0.05ms]
+
+packages\utils\test\headers.test.ts:
+(pass) HeaderGenerator > matches the original navigation field sets [0.33ms]
+(pass) HeaderGenerator > keeps user agents, client hints, and operating systems coherent across 100 draws [0.72ms]
+(pass) HeaderGenerator > honors locales and request overrides [0.05ms]
+(pass) HeaderGenerator > is deterministic with identical seeded RNGs [0.19ms]
+
+packages\utils\test\incoming-json.test.ts:
+(pass) incoming JSON cursors > yields a nested key's string chunks before the enclosing object finishes [2.65ms]
+(pass) incoming JSON cursors > emits only stable decoded chunks across split escapes and surrogate pairs [1.66ms]
+(pass) incoming JSON cursors > hands out array elements as they begin and collects them once closed [2.31ms]
+(pass) incoming JSON cursors > supports async iteration over elements and string chunks [1.51ms]
+(pass) incoming JSON cursors > scalar and container pulls use the tolerant grammar [0.55ms]
+(pass) incoming JSON cursors > matches the final parser on comments and radix literals [0.27ms]
+(pass) incoming JSON cursors > does not commit an edge closing quote while the feed is open [2.19ms]
+(pass) incoming JSON cursors > defers chunks past a lone edge slash until the comment or content resolves [3.11ms]
+(pass) incoming JSON cursors > only appends to emitted chunks when an unterminated comment flips an edge close [1.41ms]
+(pass) incoming JSON cursors > finish alone settles an edge-closed string but reports a truly unterminated one incomplete [3.56ms]
+(pass) incoming JSON cursors > a single push makes a pending chunk pull ready [2.17ms]
+(pass) incoming JSON cursors > chunk pulls surface a mismatch for non-string values [0.23ms]
+(pass) incoming JSON cursors > never swallows a sibling through quote recovery [0.38ms]
+(pass) incoming JSON cursors > reports a truncated string as incomplete at its path [0.09ms]
+(pass) incoming JSON cursors > binds the first duplicate key on cursors but the last on collection [0.17ms]
+(pass) incoming JSON cursors > pulled keys are required while unpulled members are never validated [0.45ms]
+(pass) incoming JSON cursors > whole-document validation is an explicit pull that recovers barewords [0.14ms]
+(pass) incoming JSON cursors > an abandoned pull leaves no state behind for later pulls [1.39ms]
+(pass) incoming JSON cursors > distinguishes finished from aborted terminal states [0.23ms]
+(pass) incoming JSON cursors > rounds line pulls down to complete lines until the string closes [2.41ms]
+(pass) incoming JSON cursors > serves concurrent pulls on one cursor in call order [0.27ms]
+(pass) incoming JSON cursors > resumes root scans across an unterminated comment at the buffer edge [1.30ms]
+(pass) incoming JSON cursors > iterates a large nested array without rescanning earlier elements [510.03ms]
+(pass) incoming JSON cursors > counts every member a selecting scan walks past [0.26ms]
+
+packages\utils\test\install-id.test.ts:
+(pass) getInstallId > generates and persists a UUID on first call [10.60ms]
+(pass) getInstallId > returns the cached value on subsequent calls without re-reading [2.44ms]
+(pass) getInstallId > loads an existing valid UUID instead of regenerating [2.76ms]
+(pass) getInstallId > regenerates and persists when the on-disk contents are not a valid UUID [9.15ms]
+(pass) getInstallId > anchors the install id to the base config root regardless of active profile [9.33ms]
+
+packages\utils\test\issue-935-repro.test.ts:
+(pass) issue #935 path equivalence > falls back to the lexical project path when realpath fails [0.12ms]
+(pass) issue #935 path equivalence > resolves a missing path through its deepest existing ancestor only when asked [7.77ms]
+
+packages\utils\test\json-lexer-string-scan.test.ts:
+(pass) JsonLexer string scan > honors a nonstandard ` delimiter after a long run [0.08ms]
+(pass) JsonLexer string scan > honors a nonstandard 「 delimiter after a long run [0.02ms]
+(pass) JsonLexer string scan > does not reinterpret a wrapped delimiter as an escape while streaming [0.02ms]
+(pass) JsonLexer string scan > does not re-search the remaining input once per adjacent escape [0.59ms]
+(pass) JsonLexer string scan > keeps escape-dense strings linear [39.86ms]
+(pass) JsonLexer string scan > does not re-search a distant closing quote after every mixed escape [2.17ms]
+(pass) JsonLexer string scan > shares one backslash search across escape-free sibling strings [1.81ms]
+(pass) JsonLexer string scan > re-searches backslashes when the cursor moves before the cached range [0.08ms]
+(pass) JsonLexer string scan > decodes long mixed runs of text and escapes [0.39ms]
+(pass) JsonLexer string scan > keeps a trailing split escape unstable after skipping a long run [0.08ms]
+(pass) JsonLexer string scan > preserves inner quote recovery and following fields after a long run [0.04ms]
+
+packages\utils\test\json-parse.test.ts:
+(pass) JSON repair > leaves valid string escapes unchanged [1.60ms]
+(pass) JSON repair > escapes raw control characters inside string literals [0.11ms]
+(pass) JSON repair > preserves invalid simple escapes as literal backslashes [0.06ms]
+(pass) JSON repair > returns an empty object for whitespace-only streaming JSON [0.01ms]
+(pass) classifyJsonPrefix strict streaming classification > classifies complete values, extendable prefixes, and unsalvageable buffers [0.39ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > accepts single-quoted strings and keys [0.03ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > accepts unquoted object keys [0.03ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > strips trailing and stray commas [0.04ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > coerces Python literals to JSON literals [0.04ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > recovers an unescaped apostrophe inside a single-quoted string [0.02ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > ignores // and /* */ comments [0.02ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > does NOT swallow structure through unescaped double quotes (throws) [0.06ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > rejects JS-only NaN / Infinity rather than executing a non-finite arg [0.07ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > throws on trailing garbage after a complete value [0.05ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > recovers an unquoted bareword string value (real-world input_json_delta malformation) [0.04ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > recovers barewords in array position and trims trailing whitespace before the delimiter [0.08ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > recovers URL / Windows-path colons and apostrophes inside barewords [0.06ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > still throws when a bareword is truncated or would swallow structure (missed comma) [0.09ms]
+(pass) parseJsonWithRepair relaxed (final) parsing > still throws on key-like colons and JS undefined in value position [0.04ms]
+(pass) parseStreamingJson partial parsing > auto-closes a truncated object and string [0.03ms]
+(pass) parseStreamingJson partial parsing > rolls back an incomplete trailing keyword to the last valid prefix [0.04ms]
+(pass) parseStreamingJson partial parsing > never surfaces NaN from an incomplete or non-finite number [0.04ms]
+(pass) parseStreamingJson partial parsing > rolls back a bareword at the streaming edge or mid-buffer instead of committing junk [0.02ms]
+
+packages\utils\test\json.test.ts:
+(pass) stableStringifyJson > canonicalizes nested object key order while preserving array order [0.19ms]
+(pass) stableStringifyJson > preserves __proto__ as an ordinary own JSON key [0.05ms]
+(pass) stableStringifyJson > rejects a top-level value JSON cannot serialize [0.03ms]
+(pass) stringifyJson > serializes bigint values as decimal strings [0.06ms]
+(pass) stringifyJson > serializes bigints produced by toJSON [0.03ms]
+(pass) stringifyJson > coerces bigints that follow a stateful serializer [0.03ms]
+(pass) stringifyJson > still throws TypeError for non-serializable values [0.80ms]
+(pass) stringifyJson > rethrows non-TypeError serializer failures without retrying [0.06ms]
+
+packages\utils\test\logger-batching.test.ts:
+(pass) logger file batching > buffers debug records and writes them in one call, creating the file only then [12.10ms]
+(pass) logger file batching > the flush timer writes a pending batch once, one second after the first buffered record [8.39ms]
+(pass) logger file batching > a burst above the size threshold writes once per 64 KiB, not once per record [20.26ms]
+(pass) logger file batching > warn and error records reach disk at once, after the records buffered before them [15.34ms]
+(pass) logger file batching > closing the transport writes the pending records [8.43ms]
+(pass) RotatingFileSink batching > rotation honors maxBytes exactly as an unbatched sink does [11.31ms]
+
+packages\utils\test\logger-contract.test.ts:
+(pass) central logger byte contract > pins levels, metadata normalization, key order, timestamp, errors, pid, and EOL [52.42ms]
+(pass) central logger byte contract > treats Winston format tokens as a splat branch and omits context [57.08ms]
+(pass) central logger byte contract > drops native JSON failures locally but sends original contexts to sinks [50.47ms]
+(pass) central logger file level and batching > persists debug records by default [61.62ms]
+(pass) central logger file level and batching > OMP_LOG_LEVEL=warn gates info and debug while warn and error stay on disk [64.51ms]
+(pass) central logger file level and batching > the fatal record lands after the buffered records that preceded it [59.25ms]
+(pass) central logger file level and batching > a hard exit through exitProcess writes the buffered records [59.78ms]
+(pass) central logger transport lifecycle > defaults to file-only without touching stdout or stderr [53.40ms]
+(pass) central logger transport lifecycle > a test process writes its default-file records under the temp dir, never the real logs dir [47.91ms]
+(pass) central logger transport lifecycle > emits file-only, console-only, and dual modes exactly once [149.30ms]
+(pass) central logger transport lifecycle > keeps disabled mode silent, sends sinks, preserves void returns, and re-enables [52.66ms]
+(pass) central logger transport lifecycle > closes A before reconfiguring to B and never cross-writes [50.94ms]
+(pass) central logger transport lifecycle > invalidates closed transports when warm replacement construction fails [70.45ms]
+(pass) central logger transport lifecycle > preserves burst order and drains on close and natural child exit [109.11ms]
+(pass) central logger transport lifecycle > runs local console output before sinks and isolates throwing or disposed sinks [51.71ms]
+(pass) DailyRotateFile option and retention contract > uses local-day names and retains exactly five rotations without an audit file [127.06ms]
+(pass) DailyRotateFile option and retention contract > crosses 10 MiB before rolling the following record to suffix .1 [63.69ms]
+
+packages\utils\test\logger-multiprocess.test.ts:
+(pass) multiprocess file logging > prunes completed PID namespaces across short-lived invocations [173.65ms]
+(pass) multiprocess file logging > ages out legacy shared daily logs and hash-named audits past the retention window [59.72ms]
+
+packages\utils\test\logger-no-transports.test.ts:
+(pass) logger with no transports > does not warn on emit when every transport is disabled [0.78ms]
+
+packages\utils\test\logger-runtime-closure.test.ts:
+(pass) central logger runtime closure > detector observes the direct rotating-file positive control [31.68ms]
+(pass) central logger runtime closure > import evaluates zero external logger runtime modules [34.30ms]
+(pass) central logger runtime closure > console evaluates zero external logger runtime modules [41.00ms]
+(pass) central logger runtime closure > file evaluates zero external logger runtime modules [44.79ms]
+
+packages\utils\test\logger-startup.test.ts:
+(pass) PI_DEBUG_STARTUP streaming markers > brackets a phase with start/done markers [0.34ms]
+(pass) PI_DEBUG_STARTUP streaming markers > marks a throwing phase as failed and rethrows [0.11ms]
+(pass) PI_DEBUG_STARTUP streaming markers > emits a single marker for point spans [0.05ms]
+(pass) PI_DEBUG_STARTUP streaming markers > emits nothing when PI_DEBUG_STARTUP is unset [0.07ms]
+(pass) openSpanPath > names the deepest in-flight span and clears once settled [0.44ms]
+(pass) openSpanPath > returns empty when timing is not recording [0.01ms]
+
+packages\utils\test\loop-phase.test.ts:
+(pass) loop phase stack > push/pop expose the top label in strict LIFO order through nested phases [0.11ms]
+(pass) loop phase stack > popping an already-empty stack stays undefined without underflow [0.02ms]
+(pass) loop phase stack > withLoopPhase returns the callback's value and restores the enclosing phase [0.05ms]
+(pass) loop phase stack > withLoopPhase pops on throw and preserves the error [0.03ms]
+(pass) loop phase stack > withLoopPhase labels only an async callback's synchronous prefix [0.08ms]
+(pass) loop phase late-window attribution > a disarmed take returns undefined without reading the clock [0.07ms]
+(pass) loop phase late-window attribution > clips a span crossing the deadline to the late window [0.09ms]
+(pass) loop phase late-window attribution > a short later span does not steal a longer late span's attribution [0.03ms]
+(pass) loop phase late-window attribution > late-window overlap reverses the winner of whole-span duration [0.02ms]
+(pass) loop phase late-window attribution > ignores pre-deadline work when choosing among later labels [0.03ms]
+(pass) loop phase late-window attribution > a tiny pre-deadline label cannot name a long unlabeled block [0.02ms]
+(pass) loop phase late-window attribution > a tiny late label cannot outweigh a long unlabeled block [0.02ms]
+(pass) loop phase late-window attribution > a label tied with unlabeled time leaves attribution unknown [0.02ms]
+(pass) loop phase late-window attribution > charges nested time exclusively to the innermost label [0.03ms]
+(pass) loop phase late-window attribution > aggregates fragmented spans with the same label [0.04ms]
+(pass) loop phase late-window attribution > a span ending exactly at the deadline contributes no time [0.02ms]
+(pass) loop phase late-window attribution > taking a window disarms it so a second take cannot reuse attribution [0.02ms]
+(pass) loop phase late-window attribution > equal label totals yield a largest-label attribution [0.03ms]
+(pass) loop phase late-window attribution > underflow while armed does not read the clock [0.02ms]
+(pass) loop phase late-window attribution > reset clears attribution without touching the active stack [0.04ms]
+
+packages\utils\test\lru.test.ts:
+(pass) LRUCache > matches recency, eviction, deletion, and dispose ordering [0.46ms]
+(pass) LRUCache > matches calculated-size eviction and oversized-entry rejection [0.10ms]
+(pass) LRUCache > matches stale has and peek behavior [21.35ms]
+(pass) LRUCache > matches updateAgeOnGet [0.23ms]
+
+packages\utils\test\marked.test.ts:
+(pass) marked compatibility > treats backtick-containing info strings as prose without interrupting a paragraph [6.64ms]
+(pass) marked compatibility > accepts Unicode separators inside a fence info string [0.17ms]
+(pass) marked compatibility > matches marked tokens and HTML for blocks [1.64ms]
+(pass) marked compatibility > matches marked tokens and HTML for lists [1.58ms]
+(pass) marked compatibility > matches marked tokens and HTML for codeQuote [0.87ms]
+(pass) marked compatibility > matches marked tokens and HTML for table [1.06ms]
+(pass) marked compatibility > matches marked tokens and HTML for inline [1.81ms]
+(pass) marked compatibility > matches marked tokens and HTML for links [1.45ms]
+(pass) marked compatibility > matches marked tokens and HTML for autolinks [0.98ms]
+(pass) marked compatibility > matches marked tokens and HTML for html [0.73ms]
+(pass) marked compatibility > matches marked tokens and HTML for lazyContinuation [0.17ms]
+(pass) marked compatibility > keeps the list/blank boundary shape for "- item\n\n" [0.12ms]
+(pass) marked compatibility > keeps the list/blank boundary shape for "1. a\n2. b\n\n" [0.04ms]
+(pass) marked compatibility > keeps the list/blank boundary shape for "- a\n\n\n" [0.02ms]
+(pass) marked compatibility > keeps the list/blank boundary shape for "- [x] done\n\n" [0.02ms]
+(pass) marked compatibility > keeps the list/blank boundary shape for "- item\n\nhello" [0.02ms]
+(pass) marked compatibility > keeps the list/blank boundary shape for "1. a\n2. b\n\n1) x" [0.04ms]
+(pass) marked compatibility > keeps the list/blank boundary shape for "1. a\n2. b\n\n1. c" [0.06ms]
+(pass) marked compatibility > keeps the list/blank boundary shape for "- a\n\n  b\n\n" [0.04ms]
+(pass) marked compatibility > keeps the lazy-continuation boundary shape for "lead\n   \n    code\n" [0.10ms]
+(pass) marked compatibility > keeps the lazy-continuation boundary shape for "lead\n    attached\n---\n" [0.06ms]
+(pass) marked compatibility > keeps the lazy-continuation boundary shape for "lead\n     deeper attached\n---\n" [0.03ms]
+(pass) marked compatibility > keeps the lazy-continuation boundary shape for "lead\n   \n     deeper code\n" [0.05ms]
+(pass) marked compatibility > runs block and inline tokenizer/renderer extensions [0.46ms]
+(pass) marked compatibility > plain text stops at bare addresses, URLs and hard breaks after an address-like run that is not a link [0.18ms]
+(pass) marked compatibility > an inline extension's startFrom hint tokenizes like its start hint [0.33ms]
+(pass) marked compatibility > an inline extension's startFrom hint tokenizes like its start hint inside emphasis and link labels [0.49ms]
+(pass) marked compatibility > an inline extension whose startFrom reports none as -1 fails loudly [0.15ms]
+(pass) marked compatibility > an inline extension whose startFrom reports none as null fails loudly [0.07ms]
+(pass) marked compatibility > an inline extension whose startFrom reports none as false fails loudly [0.05ms]
+(pass) marked compatibility > an inline extension registered during a lex gets its own startFrom hint [0.22ms]
+(pass) marked compatibility > gives an inline tokenizer one context per inline source, shared with the emphasis and labels inside it [0.24ms]
+(pass) marked compatibility > closes emphasis past nested, unclosed, run-internal and escaped delimiters [0.23ms]
+(pass) marked compatibility > closes link labels and destinations past unclosed, escaped and nested brackets [0.11ms]
+(pass) marked compatibility > closes nothing inside a link label or emphasis with a closer past its end [0.23ms]
+(pass) marked compatibility > closes code spans at the next run of exactly their width, and autolinks past other openers, but not past a nested end [0.28ms]
+(pass) marked compatibility > opens a code span at the backticks left after an escape, and only there inside a run [0.19ms]
+(pass) marked compatibility > opens a code span in the backticks a tokenizer's raw resumed inside [0.26ms]
+(pass) marked compatibility > opens a code span in the backticks a tokenizer override's raw resumed inside [0.24ms]
+(pass) marked compatibility > closes a code span whose closing backtick a backslash precedes, and keeps the prose around it spaced [0.18ms]
+(pass) marked compatibility > lexes a string on its own after an inlineTokens override skipped emphasis text equal to it [0.23ms]
+(pass) marked compatibility > gives an image its label unescaped as its text [0.29ms]
+(pass) marked compatibility > resolves reference links whose label or reference holds brackets [0.14ms]
+(pass) marked compatibility > treats reference label constructor as literal text, not an inherited definition [0.13ms]
+(pass) marked compatibility > treats reference label __proto__ as literal text, not an inherited definition [0.07ms]
+(pass) marked compatibility > treats reference label toString as literal text, not an inherited definition [0.03ms]
+(pass) marked compatibility > treats reference label valueOf as literal text, not an inherited definition [0.04ms]
+(pass) marked compatibility > treats reference label hasOwnProperty as literal text, not an inherited definition [0.03ms]
+(pass) marked compatibility > keeps the text before a line or paragraph separator on its line [0.10ms]
+(pass) marked compatibility > keeps an inline extension's rewrite of the text token before it [0.14ms]
+(pass) marked compatibility > closes bold inside a marker run the lexer entered through an extension's short raw [0.09ms]
+(pass) inline lexing stays linear on long paragraphs > a startFrom hint is asked again only after lexing passes its answer [0.10ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of unclosed [ (80 KB) in under two seconds [16.09ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of unclosed * (80 KB) in under two seconds [17.96ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of unclosed _ (80 KB) in under two seconds [18.86ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of address-like word without a dotted domain (80 KB) in under two seconds [40.00ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of snake_case prose (800 KB) in under two seconds [40.99ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of nested emphasis (32 KB) in under two seconds [9.97ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of nested links (20 KB) in under two seconds [4.59ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of nested emphasis around a long word (3.2 MB) in under two seconds [11.13ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of nested links around a long word (3.2 MB) in under two seconds [35.29ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of nested images around a long word (6.4 MB) in under two seconds [62.13ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of nested brackets (80 KB) in under two seconds [20.84ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of nested brackets under a definition (80 KB) in under two seconds [26.13ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of URL with trailing punctuation (80 KB) in under two seconds [1.71ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of unclosed HTML tags (80 KB) in under two seconds [11.22ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of unclosed HTML comments before a long word (1.8 MB) in under two seconds [60.24ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of an unclosed run of backticks (80 KB) in under two seconds [33.78ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of code spans opened by runs of decreasing length (320 KB) in under two seconds [146.38ms]
+(pass) inline lexing stays linear on long paragraphs > lexes a long paragraph of URL autolinks without a space or ">" (120 KB) in under two seconds [13.26ms]
+(pass) inline lexing stays linear on long paragraphs > lexes without extensions in linear time once another lexer's start hint is compiled [152.57ms]
+
+packages\utils\test\math-delimiters.test.ts:
+(pass) math span grammar > reports opener, display mode, body and end offset for each delimiter form [0.29ms]
+(pass) math span grammar > keeps the body verbatim, including newlines and surrounding spaces [0.03ms]
+(pass) math span grammar > applies the anti-currency rules to `$…$` [0.03ms]
+(pass) math span grammar > rejects an unclosed or empty span so callers can keep it literal [0.02ms]
+(pass) math span grammar > rejects an opener the source escaped [0.06ms]
+(pass) math span grammar > skips escaped closers by backslash parity [0.07ms]
+(pass) math span grammar > prefers `$$` over `$` and finds no opener elsewhere [0.04ms]
+(pass) math span grammar > scans forward for candidate offsets without resolving escapes [0.05ms]
+(pass) math block grammar > captures an own-line display block with up to three leading spaces [0.10ms]
+(pass) math block grammar > keeps blank lines inside the block instead of ending it [0.01ms]
+(pass) math block grammar > matches an own-line block delimited by CRLF line endings [0.03ms]
+(pass) math block grammar > declines a block that is unclosed, empty, or not on its own line [0.02ms]
+(pass) MathBlockScan > finds the blocks mathBlockAt finds at every offset, past unclosed openers [0.22ms]
+(pass) mathBlockMayCloseAt > reports a $$ opener that would close once its closer line arrives [0.06ms]
+(pass) mathBlockMayCloseAt > reports a \[ opener that would close once its closer line arrives
+(pass) mathBlockMayCloseAt > declines a pseudo-pair whose body is whitespace-only [0.04ms]
+(pass) mathBlockMayCloseAt > reports a block already closed within `source` [0.02ms]
+(pass) mathBlockMayCloseAt > treats a closer on the still-growing last line as unconfirmed
+(pass) mathBlockMayCloseAt > treats an opener whose own line is still being written as open [0.01ms]
+(pass) mathBlockCloserIndex > finds the first line holding only the closer of a given opener, the last line unterminated [0.07ms]
+(pass) math spans for a marked inline tokenizer > finds at every offset of one source the span mathSpanAt finds in the rest of it [0.48ms]
+(pass) math spans for a marked inline tokenizer > finds math inside emphasis and a link label only up to their end [0.38ms]
+(pass) math spans for a marked inline tokenizer > lexes a long paragraph of unclosed $ openers before digits (80 KB) in under two seconds [29.47ms]
+(pass) math spans for a marked inline tokenizer > lexes a long paragraph of unclosed \( openers before a long word (1.8 MB) in under two seconds [36.03ms]
+(pass) math spans for a marked inline tokenizer > lexes nested emphasis whose every level opens a $ span closed past it in under two seconds [11.22ms]
+(pass) math spans for a marked inline tokenizer > lexes nested emphasis whose every level opens a \( span closed past it in under two seconds [69.85ms]
+
+packages\utils\test\mermaid-ascii.test.ts:
+(pass) renderMermaidAscii > renders through the native binding with the requested options [1.61ms]
+(pass) renderMermaidAscii > maps renderer errors to null in the safe variant [0.13ms]
+
+packages\utils\test\natives-dir-override.test.ts:
+(pass) native directory override > overrides the cached XDG/profile path without relocating agent state [21.38ms]
+(pass) native directory override > expands home-relative overrides instead of treating tilde as a cwd-relative path [1.71ms]
+(pass) native directory override > keeps the existing cache root when the override is empty [1.55ms]
+(pass) native directory override > keeps the existing cache root when the override is whitespace [1.52ms]
+(pass) native directory override > keeps the existing cache root when the override is relative [1.77ms]
+
+packages\utils\test\parse-streaming-json-throttled.test.ts:
+(pass) parseStreamingJsonThrottled (F5) > parses the first non-empty buffer even when growth is below the threshold [0.10ms]
+(pass) parseStreamingJsonThrottled (F5) > treats undefined/empty buffer as not-ready (no parse) [0.02ms]
+(pass) parseStreamingJsonThrottled (F5) > geometric gate: large buffers re-parse O(log N) times, not O(N/minGrowth) [1.17ms]
+(pass) parseStreamingJsonThrottled (F5) > geometric gate keeps mid-stream snapshots fresh within ~1/32 of the buffer [0.63ms]
+(pass) parseStreamingJsonThrottled (F5) > geometric gate preserves fixed-cadence behavior for small buffers [0.34ms]
+
+packages\utils\test\path-tree.test.ts:
+(pass) formatGroupedPaths > folds a shared absolute prefix into one heading and nests the rest [0.56ms]
+(pass) formatGroupedPaths > lists a directory's own files before its subdirectories [0.08ms]
+(pass) formatGroupedPaths > emits a single root-level file with no directory heading [0.02ms]
+(pass) formatGroupedPaths > appends annotate suffixes to file lines, keyed by the full original path [0.07ms]
+(pass) formatGroupedPaths > keeps matched directories (trailing slash) as headings [0.03ms]
+
+packages\utils\test\path.test.ts:
+(pass) stripWindowsExtendedLengthPathPrefix > removes drive and UNC extended-length prefixes on Windows [0.10ms]
+(pass) stripWindowsExtendedLengthPathPrefix > leaves non-Windows paths unchanged [0.02ms]
+(pass) windowsPathToWslMount > clamps parent traversal at the Windows drive root [0.07ms]
+(pass) windowsPathToWslMount > rejects paths without an absolute Windows drive [0.01ms]
+(pass) isFullyQualifiedPath > identifies fully qualified Windows paths across platforms [0.08ms]
+(pass) isFullyQualifiedPath > identifies absolute POSIX paths [0.02ms]
+
+packages\utils\test\peek-file-errors.test.ts:
+(pass) file peek boundaries and cleanup > reads a synchronous header larger than the initial shared buffer [4.01ms]
+(pass) file peek boundaries and cleanup > returns the synchronous callback result without opening a file for a zero budget [0.96ms]
+(pass) file peek boundaries and cleanup > returns the asynchronous callback result without opening a file for a negative budget [0.85ms]
+(pass) file peek boundaries and cleanup > returns an empty tail and closes the handle for an empty file [2.45ms]
+(pass) file peek boundaries and cleanup > preserves a synchronous read error and closes the descriptor [2.25ms]
+(pass) file peek boundaries and cleanup > preserves an asynchronous read error and closes the handle [2.41ms]
+(pass) file peek boundaries and cleanup > closes the header handle when the consumer callback throws [2.69ms]
+(pass) file peek boundaries and cleanup > preserves a tail stat error and closes the handle [2.60ms]
+(pass) file peek boundaries and cleanup > closes the shared handle when the head-and-tail consumer throws [2.62ms]
+
+packages\utils\test\peek-file.test.ts:
+(pass) peekFile > reads an exact header slice asynchronously [2.65ms]
+(pass) peekFile > reads an exact header slice synchronously [2.57ms]
+(pass) peekFile > keeps a retained 512-byte slice stable across later peeks [2.85ms]
+(pass) peekFile > gives callbacks Uint8Array slice copy semantics [7.33ms]
+(pass) peekFileTail > reads an exact tail slice ending at EOF with Uint8Array slice semantics [2.45ms]
+(pass) peekFileTail > returns the whole file when shorter than the budget [2.05ms]
+(pass) peekFileTail > returns empty for a non-positive budget [1.22ms]
+(pass) peekFileEnds > reads exact head and tail slices from a larger file [2.35ms]
+(pass) peekFileEnds > returns the whole file for both windows when it fits in the head budget [2.15ms]
+(pass) peekFileEnds > returns an empty tail when the suffix budget is zero [2.31ms]
+(pass) peekFileEnds > returns an empty head when the prefix budget is zero [2.21ms]
+(pass) peekFileEnds > returns two empty slices without opening when both budgets are zero [0.74ms]
+(pass) peekFileEnds > reads distinct head and tail content across 512-byte boundaries [20.75ms]
+
+packages\utils\test\postmortem-cleanup-error.test.ts:
+(pass) postmortem expected cleanup errors > marks errors with the well-known cleanup symbol and recognizes them [0.10ms]
+(pass) postmortem expected cleanup errors > recognizes marked cleanup errors through bounded cause chains [0.06ms]
+(pass) postmortem expected cleanup errors > requires an explicit cleanup marker for aborts and closed sockets [0.05ms]
+(pass) postmortem expected cleanup errors > lets the process survive an unhandled rejection whose cause chain is marked [119.28ms]
+(pass) postmortem expected cleanup errors > keeps an unmarked unhandled AbortError fatal [83.11ms]
+(pass) postmortem expected cleanup errors > keeps an unmarked ERR_SOCKET_CLOSED rejection fatal [84.88ms]
+(pass) postmortem expected cleanup errors > lets the process survive an uncaught exception that is marked as expected cleanup [84.39ms]
+(pass) postmortem expected cleanup errors > keeps a synchronously thrown unmarked AbortError fatal [81.91ms]
+(pass) postmortem expected cleanup errors > keeps unmarked uncaught exceptions fatal [87.20ms]
+(pass) postmortem expected cleanup errors > prints recovery commands for a session that fatal cleanup saved [85.52ms]
+(skip) postmortem expected cleanup errors > prints recovery commands once when repeated SIGTERMs stop the process
+(pass) postmortem expected cleanup errors > exits after an uncaught exception when terminal stderr is revoked [86.48ms]
+(pass) postmortem expected cleanup errors > releases manual cleanup at the deadline even when a callback never settles [86.21ms]
+(pass) postmortem expected cleanup errors > holds cleanup open past the default deadline for a pending callback with a longer deadlineMs [87.02ms]
+(pass) postmortem expected cleanup errors > waitMessage prints once the other callbacks finish while the save is pending [71.74ms]
+(pass) postmortem expected cleanup errors > waitMessage prints nothing for a save that already finished [72.82ms]
+(pass) postmortem expected cleanup errors > waitMessage prints at the default deadline when another callback hangs [84.45ms]
+(pass) postmortem expected cleanup errors > waitMessage prints for a save registered late, after the other callbacks finished [71.93ms]
+(pass) postmortem expected cleanup errors > keeps the default deadline once a callback with a longer deadlineMs has settled [85.27ms]
+(pass) postmortem expected cleanup errors > re-arms registrations after a manual cleanup keeps the process alive [69.15ms]
+(pass) postmortem expected cleanup errors > runs a persistent owner again at real exit after a keep-alive cleanup [72.15ms]
+(pass) postmortem expected cleanup errors > skips exit-only callbacks on keep-alive cleanup but runs them on the real exit [69.16ms]
+(pass) postmortem expected cleanup errors > awaits an async callback registered mid-pass before cleanup() settles [75.93ms]
+(skip) postmortem expected cleanup errors > finishes an async late registration before a SIGTERM exit
+
+packages\utils\test\postmortem-epipe.test.ts:
+(pass) postmortem broken-pipe handling > classifies worker IPC and stdio EPIPE errors [0.10ms]
+(pass) postmortem broken-pipe handling > does not classify unrelated errors as recoverable broken pipes [0.03ms]
+(pass) postmortem broken-pipe handling > keeps the process alive when Bun surfaces worker IPC EPIPE as an uncaught exception [90.71ms]
+(pass) postmortem broken-pipe handling > keeps unrelated uncaught exceptions fatal [73.93ms]
+(pass) postmortem broken-pipe handling > keeps a non-stdout write EPIPE fatal while stdio-disconnect handling is registered [76.43ms]
+(pass) postmortem broken-pipe handling > defers a non-EPIPE stdout error instead of forcing a fatal exit [66.42ms]
+(skip) postmortem broken-pipe handling > runs cleanup and exits 0 when a registered stdout consumer closes early
+(pass) postmortem broken-pipe handling > keeps the process alive for Bun's async node:net close error [77.65ms]
+(pass) postmortem broken-pipe handling > keeps ERR_SOCKET_CLOSED fatal when application frames are on the stack [0.37ms]
+
+packages\utils\test\postmortem-guard-exit.test.ts:
+(pass) postmortem guard-window exit (#11789) > exits with the requested code through a poisoned guard chain [63.56ms]
+(pass) postmortem guard-window exit (#11789) > bounds the fatal path to a single rejection instead of an ExtensionExitError storm [73.51ms]
+
+packages\utils\test\process-name.test.ts:
+(skip) setProcessName > sets /proc/self/comm on Linux
+
+packages\utils\test\procmgr.test.ts:
+(pass) getShellConfig > directs invalid custom shell paths to the canonical config file [0.27ms]
+(pass) getShellConfig > falls back to the default shell once a custom shell path is cleared [2.52ms]
+(skip) refreshShellConfigCache > keeps a launcher-exported value the project's dotenv file repeats, and drops dotenv-only values
+(pass) refreshShellConfigCache > keeps the launch project's dotenv values out of another project's session after a refresh in the launch project [61.56ms]
+(pass) refreshShellConfigCache > keeps the launch project's dotenv values out of another project's session after a build in the launch project [62.03ms]
+(pass) isPosixShell > recognizes only known POSIX-quoting shell executable basenames [0.22ms]
+(pass) getShellArgs > uses -Command for PowerShell shells instead of the POSIX -l -c pair [0.05ms]
+(pass) getShellArgs > maps the no-login env gate to -NoProfile for PowerShell [0.02ms]
+(pass) getShellArgs > keeps cmd.exe and POSIX shell args unchanged [0.03ms]
+(pass) resolveWindowsShell > finds scoop's Git Bash via GIT_INSTALL_ROOT despite bash.exe missing from PATH [3.18ms]
+(pass) resolveWindowsShell > finds Git Bash in the default scoop app dir via USERPROFILE [3.73ms]
+(pass) resolveWindowsShell > prefers a Git for Windows install root over the cmd.exe fallback [2.17ms]
+(skip) resolveWindowsShell > falls back to cmd.exe instead of failing when no bash exists
+
+packages\utils\test\profiles.test.ts:
+(pass) profile directories > moves agent and root data under the named profile root [1.68ms]
+(pass) profile directories > treats the default profile as regular mode [1.23ms]
+(pass) profile directories > keeps XDG-backed named profile state under profile-specific roots [1.20ms]
+(pass) profile directories > does not silently switch a named profile to XDG once the base app dir appears [1.15ms]
+(pass) profile directories > rejects path-like profile names [1.11ms]
+(pass) profile directories > rejects trailing-dot profile names to avoid Windows path collisions [1.09ms]
+(pass) profile directories > restores the pre-profile PI_CODING_AGENT_DIR override on reset [1.26ms]
+(pass) profile directories > clears PI_CODING_AGENT_DIR on reset when nothing was set originally [1.10ms]
+(pass) profile directories > rejects Windows reserved device names case-insensitively [1.09ms]
+(pass) profile directories > does not restore a profile-derived agent dir as the default baseline [1.06ms]
+(pass) profile env + name validation > honors OMP_PROFILE precedence and treats empty/default as the default profile [0.04ms]
+(pass) profile env + name validation > rejects uppercase profile names so isolation is filesystem-independent [0.04ms]
+(pass) dirs module import behavior > does not scrub inherited macOS malloc logging env variables on import [42.98ms]
+(pass) dirs module import behavior > exposes worker-host without loading agent env [39.02ms]
+(pass) dirs module import behavior > ignores inherited profile agent dir when OMP_PROFILE explicitly selects default [87.95ms]
+(pass) dirs module import behavior > honors XDG dir keys from a profile .env applied after the resolver froze [0.33ms]
+
+packages\utils\test\prompt.test.ts:
+(pass) format: ascii symbol replacement > replaces all seven symbols in one line [0.38ms]
+(pass) format: ascii symbol replacement > prioritizes <-> over -> and <- on overlapping input [0.04ms]
+(pass) format: ascii symbol replacement > consumes ellipsis runs greedily in threes [0.03ms]
+(pass) format: ascii symbol replacement > skips replacements inside html comments, including multi-line state [0.10ms]
+(pass) format: ascii symbol replacement > replaces symbols on a line containing --> but no opener [0.01ms]
+(pass) format: ascii symbol replacement > leaves code fences untouched [0.02ms]
+(pass) format: rfc 2119 normalization > strips bold and aliases MUST NOT / SHOULD NOT outside inline code [0.08ms]
+(pass) format: rfc 2119 normalization > preserves keywords inside inline code spans [0.02ms]
+(pass) format: rfc 2119 normalization > leaves non-keyword bold alone
+(pass) format: structure > compacts table rows and separators, preserving indent and alignment [0.11ms]
+(pass) format: structure > collapses runs of 2+ blank lines and trims boundary blanks [0.03ms]
+(pass) format: structure > drops a single blank line before a closing xml tag [0.04ms]
+(pass) format: structure > does not treat self-closing or attribute-laden non-tags as block tags [0.02ms]
+(pass) format: structure > keeps blank handling inside code fences verbatim [0.01ms]
+(pass) format: structure > pops blanks before handlebars block closers only in pre-render [0.02ms]
+(pass) compile cache > renders templates with 3+ closing braces unambiguously [0.97ms]
+(pass) helpers: join > unescapes \n and \t in the separator (Handlebars string literals carry no escapes) [0.20ms]
+(pass) helpers: join > defaults to comma-space and tolerates non-arrays [0.05ms]
+
+packages\utils\test\ptree-bytes.test.ts:
+(pass) ptree.ChildProcess.bytes() > returns a Uint8Array regardless of stdout size [37.38ms]
+
+packages\utils\test\ptree-kill.test.ts:
+(skip) ptree kill without a usable native process handle > still ends a SIGTERM-ignoring child when the handle lookup throws
+(skip) ptree kill without a usable native process handle > still ends a SIGTERM-ignoring child when native termination rejects
+
+packages\utils\test\ptree-signal.test.ts:
+(pass) ptree signal abort handling > does not trigger unhandledRejection when spawned with a pre-aborted signal [68.65ms]
+(pass) ptree signal abort handling > does not trigger unhandledRejection when exec is called with an aborted signal and allowAbort [193.79ms]
+(pass) ptree signal abort handling > does not trigger unhandledRejection when signal aborts mid-execution [76.55ms]
+
+packages\utils\test\ptree-stderr.test.ts:
+(pass) ptree stderr capture > requires full stderr capture to be selected before spawning [47.87ms]
+(pass) ptree stderr capture > preserves complete stderr for explicit exec capture [40.06ms]
+(pass) ptree stderr capture > preserves the live stream and retained stderr for explicit spawn capture [33.78ms]
+(pass) ptree stderr capture > keeps peek and nonzero errors on the bounded stderr tail [31.30ms]
+(pass) ptree stderr capture > does not retain drained stderr chunks while the process handle is alive [112.22ms]
+
+packages\utils\test\ptree-timeout.test.ts:
+(pass) ptree timeout > contains the lifecycle rejection when the caller does not observe exited [37.10ms]
+(skip) ptree timeout > kills descendants adopted while an AbortSignal races the timeout sweep
+(skip) ptree timeout > falls back after the first libc soname is unavailable
+(skip) ptree timeout > does not leak supervisor-only environment into the command
+(skip) ptree timeout > preserves caller-supplied BUN_BE_BUN for the command
+(skip) ptree timeout > supervises commands without a mounted procfs
+(pass) ptree timeout > clears the timeout timer once the child exits so a fast command does not hold the event loop [83.19ms]
+(skip) ptree timeout > keeps reading inherited stdout until the configured command deadline
+(skip) ptree timeout > rejects text when the deadline fires after the root exits
+(skip) ptree timeout > rejects blob when the deadline fires after the root exits
+(skip) ptree timeout > rejects json when the deadline fires after the root exits
+(skip) ptree timeout > rejects arrayBuffer when the deadline fires after the root exits
+(skip) ptree timeout > rejects bytes when the deadline fires after the root exits
+(skip) ptree timeout > keeps reading inherited stdout until EOF without a timeout
+(skip) ptree timeout > terminates a detached group that holds stdout past the command deadline
+(pass) ptree timeout > terminates a pipe-holding descendant after the Windows root exits [290.57ms]
+(skip) ptree timeout > throws NonZeroExitError by default when the child exits nonzero
+(skip) ptree timeout > completes when an orphan holds stdout past the root's exit
+(skip) ptree timeout > completes when an orphan holds stderr past the root's exit
+(skip) ptree timeout > completes when a nonzero exit races an orphan holding stderr
+(skip) ptree timeout > preserves the timeout reason when nonzero normalization waits for stderr
+
+packages\utils\test\readability.test.ts:
+(pass) Readability > extracts a metadata-rich news article [7.64ms]
+(pass) Readability > extracts JSON-LD metadata and blog prose [1.03ms]
+(pass) Readability > extracts a structured documentation page [1.58ms]
+(pass) Readability > rejects a page without readable text [2.39ms]
+(pass) Readability > honors class preservation and a custom serializer [0.37ms]
+(pass) Readability > provides the inexpensive readerability heuristic [0.32ms]
+
+packages\utils\test\ring.test.ts:
+(pass) construction > starts empty [0.07ms]
+(pass) push > adds items and tracks length [0.07ms]
+(pass) push > overwrites oldest and returns it when full [0.02ms]
+(pass) push > wraps around multiple times [0.02ms]
+(pass) shift > removes from front in FIFO order [0.04ms]
+(pass) shift > returns undefined when empty [0.01ms]
+(pass) shift > works after wraparound [0.02ms]
+(pass) pop > removes from back [0.03ms]
+(pass) pop > returns undefined when empty
+(pass) pop > works after wraparound [0.02ms]
+(pass) unshift > adds to front [0.03ms]
+(pass) unshift > returns undefined when not full [0.01ms]
+(pass) unshift > overwrites newest and returns it when full [0.04ms]
+(pass) at > accesses by logical index [0.03ms]
+(pass) at > supports negative indices [0.04ms]
+(pass) at > returns undefined for out of bounds [0.01ms]
+(pass) at > correct after wraparound [0.02ms]
+(pass) peek / peekBack > returns first and last without removing [0.03ms]
+(pass) peek / peekBack > returns undefined when empty [0.03ms]
+(pass) clear > resets to empty [0.04ms]
+(pass) clear > works normally after clear [0.01ms]
+(pass) iterator > iterates in logical order [0.11ms]
+(pass) iterator > yields nothing when empty [0.02ms]
+(pass) toArray > returns new array each time [0.01ms]
+(pass) mixed operations > push/shift as a queue [0.02ms]
+(pass) mixed operations > push/pop as a stack [0.02ms]
+(pass) mixed operations > drain completely then refill [0.02ms]
+(pass) mixed operations > unshift then shift round-trips [0.02ms]
+(pass) capacity 1 edge case > single-element buffer [0.02ms]
+
+packages\utils\test\runtime-install.test.ts:
+(pass) splitBareSpecifier > splits scoped and unscoped specifiers with subpaths [0.15ms]
+(pass) resolveRuntimeModule > resolves conditional exports preferring require over import [6.54ms]
+(pass) resolveRuntimeModule > falls back to main pointing at a .node binding (napi-rs platform package) [4.61ms]
+(pass) resolveRuntimeModule > probes extensions and directory index for extensionless main [6.59ms]
+(pass) resolveRuntimeModule > resolves subpath requests through the exports map and via plain joining [7.19ms]
+(pass) resolveRuntimeModule > returns null for absent packages and import-only exports [4.06ms]
+(pass) resolveRuntimeModule > falls back to index.js when manifest has no usable entry [3.67ms]
+(pass) installRuntimeModuleResolver > keeps runtime-parent bare requests inside the runtime cache [18.80ms]
+(pass) installRuntimeModuleResolver > corrects a stock hit and a runtime-parent miss when the cache is reached through a symlink [13.92ms]
+(pass) installRuntimeModuleResolver > uninstall restores the stock resolver and createRequire relative requires [4.43ms]
+(pass) writeRuntimeManifest > emits overrides so a transitive pin is forced across the runtime tree [2.70ms]
+(pass) writeRuntimeManifest > omits overrides when none are provided or the map is empty [4.08ms]
+(pass) ensureRuntimeInstalled install lock > a stale legacy .lock directory does not block install and is cleared [30.60ms]
+(pass) ensureRuntimeInstalled install lock > a live legacy .lock owner is waited out, never reclaimed on retry exhaustion [371.27ms]
+(pass) ensureRuntimeInstalled install lock > reserves the legacy namespace before the new install starts [28.44ms]
+(pass) ensureRuntimeInstalled install lock > a crashed installer does not wedge a later install [75.04ms]
+
+packages\utils\test\sanitize-text.test.ts:
+(pass) sanitizeText > strips ANSI CSI and removes C0/C1 control chars while keeping tab + LF [0.13ms]
+(pass) sanitizeText > drops lone surrogates and preserves valid surrogate pairs [0.04ms]
+(pass) sanitizeText > drops replacement characters on malformed input [0.01ms]
+(pass) sanitizeText > preserves replacement characters on well-formed input [0.01ms]
+(pass) sanitizeText > preserves valid surrogate pairs while stripping controls [0.02ms]
+(pass) sanitizeText > strips OSC sequences terminated by BEL [0.01ms]
+(pass) sanitizeText > strips OSC sequences terminated by ST (ESC \)
+(pass) sanitizeText > returns the original string instance when no changes are needed
+(pass) sanitizeText > strips DCS sequences terminated by ST
+(pass) sanitizeText > handles single-byte ESC finals (e.g. ESC c reset)
+(pass) sanitizeText > strips DEL and normalizes lone CR
+(pass) sanitizeTextDeep > sanitizes nested strings into copies and leaves the input and clean branches untouched [0.30ms]
+(pass) sanitizeTextDeep > returns the same reference when nothing needs sanitizing [0.03ms]
+(pass) sanitizeTextDeep > terminates on cyclic values [0.03ms]
+(pass) sanitizeTextDeep > handles deeply nested clean and unsafe details without overflowing [19.48ms]
+(pass) sanitizeTextDeep > sanitizes the leaf of a deeply nested object without mutating the source [59.33ms]
+(pass) sanitizeTextDeep > keeps an own __proto__ field when its value is sanitized [0.19ms]
+
+packages\utils\test\slugify.test.ts:
+(pass) slugify > lowercases ASCII and collapses non-alphanumeric runs into single dashes [0.12ms]
+(pass) slugify > trims edge dashes without transliterating non-ASCII characters [0.04ms]
+(pass) slugify > returns empty when no ASCII letters or digits survive [0.04ms]
+(pass) slugify > truncates the normalized slug at maxLength [0.04ms]
+(pass) slugify > re-trims a trailing dash introduced by truncation [0.02ms]
+(pass) slugify > rejects a maxLength that is not a non-negative integer [0.07ms]
+(pass) slugify > returns empty for a zero-length limit [0.03ms]
+(pass) slugify > keeps the normalized slug unbounded when maxLength is absent [0.02ms]
+
+packages\utils\test\snowflake.test.ts:
+(pass) Snowflake > round-trips timestamp and sequence through formatParts [0.25ms]
+(pass) Snowflake > orders lexicographically by timestamp [0.09ms]
+(pass) Snowflake > brackets a timestamp with lowerbound/upperbound [0.04ms]
+(pass) Snowflake > saturates timestamps outside the representable range [0.07ms]
+(pass) Snowflake > keeps bounds ordered and decodable when saturated [0.06ms]
+
+packages\utils\test\spacing.test.ts:
+(pass) getEditorConfigFormatting > returns an empty object when no .editorconfig is present [4.41ms]
+(pass) getEditorConfigFormatting > derives tabSize and insertSpaces from `indent_size = <n>` (insertSpaces inferred) [12.95ms]
+(pass) getEditorConfigFormatting > derives insertSpaces=false and tabSize from `indent_style = tab` + `tab_width` [4.84ms]
+(pass) getEditorConfigFormatting > treats `indent_size = tab` as tabs [3.95ms]
+(pass) getEditorConfigFormatting > leaves tabSize undefined when only indent_style = tab is set (no tab_width) [4.20ms]
+(pass) getEditorConfigFormatting > returns the deepest section's values when sections overlap [4.15ms]
+(pass) getEditorConfigFormatting > never throws on null/empty paths or paths with overlong components [2.70ms]
+(pass) getEditorConfigFormatting > tolerates filesystem errors while walking the editorconfig chain (ENOTDIR) [3.69ms]
+
+packages\utils\test\sqlite.test.ts:
+(pass) failed asynchronous initialization releases and rolls back its write transaction [16.87ms]
+(pass) corruption recovery is opt-in and the default preserves the active evidence [3.49ms]
+(pass) synchronous recovery preserves malformed schema pages and yields a persistent database [25.09ms]
+(pass) recovery preserves sidecars present at corruption detection under one private backup name [32.48ms]
+(pass) concurrent failed openers adopt one replacement without discarding each other's writes [39.67ms]
+(pass) a second corruption failure surfaces without rotating the first backup again [16.37ms]
+(pass) opt-in recovery never rotates a non-corruption SQLite failure [2.56ms]
+(pass) recovery still fires when a multi-statement script hides the corruption behind a later error [23.22ms]
+(pass) a non-corruption init failure on a store that fails quick_check is preserved as corruption [11.10ms]
+(pass) salvage keeps every readable row on both sides of a damaged first leaf [53.21ms]
+(pass) salvage keeps every readable row on both sides of a damaged middle leaf [43.05ms]
+(pass) salvage keeps every readable row on both sides of a damaged second-to-last leaf [42.28ms]
+
+packages\utils\test\stderr-guard.test.ts:
+(pass) stderr guard > suppresses fd-2 writes only while active and refuses non-terminal stderr without force [48.39ms]
+(skip) stderr guard > suppresses same-terminal fd-2 writes by default
+(pass) stderr guard > follows the rotating sink across a local-day boundary [53.96ms]
+
+packages\utils\test\stream.test.ts:
+(pass) readLines > splits lines across chunks without newlines [0.72ms]
+(pass) readLines > keeps retained split lines stable after the stream drains [0.19ms]
+(pass) readLines > keeps a retained split line stable beside an unterminated tail [0.13ms]
+(pass) abortableSource (via readLines) > cancels the source and stops yielding when aborted mid-stream [0.19ms]
+(pass) abortableSource (via readLines) > cancels the source when the consumer breaks early [0.21ms]
+(pass) readJsonl > parses JSONL across chunk boundaries [0.62ms]
+(pass) readJsonl > parses trailing line without newline [0.09ms]
+(pass) ConcatSink > accumulates appended chunks in order [0.04ms]
+(pass) ConcatSink > keeps the remainder after consuming a prefix [0.07ms]
+(pass) ConcatSink > empties when consuming at or past the buffered length [0.02ms]
+(pass) ConcatSink > ignores non-positive consume counts [0.01ms]
+(pass) ConcatSink > preserves multibyte sequences split across appends [0.05ms]
+(pass) parseJsonlLenient > skips malformed lines and continues [0.10ms]
+(pass) parseJsonlLenient > returns empty array for empty input [0.01ms]
+(pass) parseJsonlLenient > handles input without trailing newline [0.01ms]
+(pass) parseJsonlLenient > notifies onMalformedRecord once per malformed line and ignores ASCII or Unicode whitespace-only lines [0.05ms]
+(pass) readSseJson > parses data lines and stops at [DONE] [0.73ms]
+(pass) readSseJson > reports raw events to diagnostic observers without changing parsed output [0.16ms]
+(pass) readSseJson > flushes a trailing event without the closing blank line [0.09ms]
+(pass) readSseJson > completes cleanly when the final data chunk is truncated JSON [0.60ms]
+(pass) readSseJson > completes cleanly when the final data chunk is cut inside a JSON literal at EOF [0.21ms]
+(pass) readSseJson > throws SyntaxError when a middle data chunk is malformed JSON [0.11ms]
+(pass) readSseJson > throws SyntaxError when a final event is not JSON-container-shaped [0.21ms]
+(pass) readSseJson > stops cleanly on a container-shaped final event that fails strict parse [0.36ms]
+(pass) readSseJsonOrText > yields parsed events and stops at the [DONE] sentinel [0.18ms]
+(pass) readSseJsonOrText > yields a non-JSON frame as its raw text instead of throwing [0.07ms]
+(pass) readSseJsonOrText > joins a multi-line HTML frame into one text yield [0.09ms]
+(pass) readSseJsonOrText > yields a double-encoded JSON string frame as the decoded string [0.07ms]
+(pass) readSseJsonOrText > ends iteration on a cut-off container-shaped tail, exactly like readSseJson [0.08ms]
+(pass) readSseJsonOrText > rethrows nothing for a middle malformed frame that readSseJson rejects [0.11ms]
+(pass) readSseEvents > dispatches events on blank-line boundaries [0.12ms]
+(pass) readSseEvents > joins multiple data: lines with newlines [0.09ms]
+(pass) readSseEvents > skips comment lines but preserves them in raw [0.11ms]
+(pass) readSseEvents > does not carry pure comment keepalives into the next event raw lines [0.10ms]
+(pass) readSseEvents > yields control-only id/retry events for reconnecting transports [0.11ms]
+(pass) readSseEvents > strips a single optional space after the field colon (and only one) [0.09ms]
+(pass) readSseEvents > dispatches multiple CR-only events before EOF [0.19ms]
+(pass) readSseEvents > handles chunk-split CRLF and UTF-8 sequences together [0.16ms]
+(pass) readSseEvents > recovers when a chunk boundary splits inside a field name [0.12ms]
+(pass) readSseEvents > flushes a pending event even without the trailing blank line [0.15ms]
+(pass) readSseEvents > leaves raw empty by default so the token path pays no per-line slices [0.10ms]
+(pass) readSseEvents > treats a tail without any newline as a complete final line [0.08ms]
+(pass) readSseEvents > survives a one-byte-per-chunk drip feed without quadratic blowup [34.37ms]
+(pass) ConcatSink capacity > releases an oversized buffer once its bytes are consumed [1.32ms]
+(pass) ConcatSink capacity > drops an oversized buffer on clear and reuses a right-sized one on reset [7.13ms]
+
+packages\utils\test\temp-remove.test.ts:
+(pass) locked temp directory removal > removeSyncWithRetries deletes a closed SQLite database whose statement was never finalized [91.36ms]
+(pass) locked temp directory removal > removeWithRetries forces a major GC before the first retry [66.70ms]
+
+packages\utils\test\template.test.ts:
+(pass) real template goldens > matches output captured from handlebars 4.7.9 [22.58ms]
+(pass) template semantics > resolves dotted, bracket, this, parent, root, and iteration data paths [0.33ms]
+(pass) template semantics > uses handlebars falsy rules while each still visits falsy array entries [0.24ms]
+(pass) template semantics > closes an else-chain with the opening block's single closing tag [0.18ms]
+(pass) template semantics > supports hash arguments and helper subexpressions [0.15ms]
+(pass) template semantics > passes fn, inverse, and hash to block helpers [0.09ms]
+(pass) template semantics > escapes the exact entity set and honors triple-stache and SafeString [0.17ms]
+(pass) template semantics > prefers helpers over same-named properties and renders missing paths empty [0.05ms]
+
+packages\utils\test\tls-fetch.test.ts:
+(pass) wrapFetchForExtraCa > returns the original fetch when NODE_EXTRA_CA_CERTS is unset [1.46ms]
+(pass) wrapFetchForExtraCa > loads the CA bundle from a path and seeds the system root store [4.36ms]
+(pass) wrapFetchForExtraCa > accepts an extensionless path per Node's NODE_EXTRA_CA_CERTS contract [3.21ms]
+(pass) wrapFetchForExtraCa > accepts an inline PEM and expands escaped \n [1.28ms]
+(pass) wrapFetchForExtraCa > appends to existing tls.ca without re-seeding system roots [13.10ms]
+(pass) wrapFetchForExtraCa > invalidates the cache when the bundle file is rewritten [4.58ms]
+(pass) wrapFetchForExtraCa > throws ExtraCaError when the configured path does not exist [1.50ms]
+(pass) wrapFetchForExtraCa > is idempotent — wrapping a wrapped fetch returns the same reference [1.91ms]
+
+packages\utils\test\turndown.test.ts:
+(pass) TurndownService golden compatibility > complex aligned tables [1.75ms]
+(pass) TurndownService golden compatibility > nested ordered and unordered lists [0.35ms]
+(pass) TurndownService golden compatibility > fenced code and highlighted code [0.57ms]
+(pass) TurndownService golden compatibility > nested blockquotes and hard breaks [0.18ms]
+(pass) TurndownService golden compatibility > links and images [0.36ms]
+(pass) TurndownService golden compatibility > strikethrough and task list items [0.27ms]
+(pass) TurndownService golden compatibility > mixed inline and unknown HTML [0.28ms]
+(pass) TurndownService golden compatibility > supports rule, plugin, keep, remove, and escape extension points [0.28ms]
+(pass) TurndownService golden compatibility > honors formatting and blank-replacement options [0.25ms]
+(pass) TurndownService golden compatibility > accepts a standards-shaped node [0.04ms]
+
+packages\utils\test\version.test.ts:
+(pass) compareVersions > trims whitespace and strips one leading v/V [0.23ms]
+(pass) compareVersions > zero-pads missing trailing segments [0.03ms]
+(pass) compareVersions > supports arbitrary segment counts [0.06ms]
+(pass) compareVersions > orders SemVer prereleases before the plain release [0.08ms]
+(pass) compareVersions > compares prerelease identifiers per SemVer 2.0 [0.06ms]
+(pass) compareVersions > strips SemVer build metadata before comparing [0.06ms]
+(pass) compareVersions > compares malformed numeric segments as 0 [0.02ms]
+(pass) compareVersions > never throws and always returns -1, 0, or 1 [0.10ms]
+
+packages\utils\test\vterm-query-responder.test.ts:
+(pass) TerminalQueryResponder > answers cursor position, device status, and device attribute queries [0.21ms]
+(pass) TerminalQueryResponder > answers OSC color queries with the requester's terminator [0.03ms]
+(pass) TerminalQueryResponder > leaves only the host's session-start cursor query unanswered [0.03ms]
+(pass) TerminalQueryResponder > reassembles a query split across output chunks [0.02ms]
+(pass) TerminalQueryResponder > replies in query order when one chunk carries several probes [0.01ms]
+(pass) TerminalQueryResponder > stays silent on styling, cursor movement, private DSR forms, and plain text [0.02ms]
+
+packages\utils\test\vterm.test.ts:
+(pass) vterm xterm-compatible golden streams > wraps command output and preserves physical-line metadata [0.84ms]
+(pass) vterm xterm-compatible golden streams > consumes SGR while retaining palette and rendition cell data [0.53ms]
+(pass) vterm xterm-compatible golden streams > carriage return overwrites progress in place [0.14ms]
+(pass) vterm xterm-compatible golden streams > enters, draws, and restores the alternate screen [0.41ms]
+(pass) vterm xterm-compatible golden streams > evicts scrollback at the configured line limit [0.22ms]
+(pass) vterm xterm-compatible golden streams > wraps a wide grapheme before the right boundary [0.22ms]
+(pass) vterm xterm-compatible golden streams > reflows wrapped lines across successive resizes [0.41ms]
+(pass) vterm xterm-compatible golden streams > does not convert unused screen rows into scrollback on resize [0.14ms]
+(pass) vterm xterm-compatible golden streams > applies cursor edits inside a DEC scrolling region [0.21ms]
+(pass) vterm xterm-compatible golden streams > ignores private and intermediate CSI sequences without a handler [0.34ms]
+(pass) vterm xterm-compatible golden streams > keeps ASCII bases joined to combining marks and keycap sequences [0.18ms]
+(pass) vterm xterm-compatible golden streams > attaches a combining mark from a later write to the previous cell [0.15ms]
+(pass) vterm xterm-compatible golden streams > a retained line cannot alter live output after reflow [0.09ms]
+
+packages\utils\test\which.test.ts:
+(skip) $which > uses the current process PATH for each cached lookup
+(pass) $which > returns null when requireAbsolutePaths is true and PATH contains only relative entries [0.28ms]
+(skip) $which > resolves absolute PATH entries while ignoring relative ones when requireAbsolutePaths is true
+(pass) $which > honours a Bun.which stub installed after import [0.10ms]
+(pass) $which > keeps cache entries distinct when cwd/PATH share a concatenation [0.09ms]
+(skip) $whichAll > returns every PATH match in PATH order, skipping misses
+
+packages\utils\test\worker-host.test.ts:
+(pass) worker-host selectors > recognizes the shared selector namespace without claiming ordinary CLI arguments [0.05ms]
+(pass) worker-host inbox > replays messages buffered before bind, then forwards live ones, in order [0.19ms]
+(pass) worker-host inbox > delivers nothing twice and re-buffers after unbind [0.08ms]
+(pass) worker-host inbox > hands the installed inbox to a single consumer, then reports none [0.02ms]
+
+packages\utils\test\xml.test.ts:
+(pass) XMLParser converter fixtures > matches captured fast-xml-parser output for a representative PPTX slide [0.78ms]
+(pass) XMLParser converter fixtures > matches captured fast-xml-parser output for XLSX sheet and shared strings [0.30ms]
+(pass) XMLParser converter fixtures > matches captured fast-xml-parser output for an EPUB OPF [0.23ms]
+(pass) XMLParser option and content edges > handles arrays, self-closing tags, mixed content, entities, CDATA, comments, and processing instructions [0.09ms]
+(pass) XMLParser option and content edges > honors value parsing, trimming, attributes, and isArray [0.15ms]
+(pass) XMLParser option and content edges > recovers from malformed end tags and stray markup instead of looping forever [0.06ms]
+
+packages\utils\test\zip-package.test.ts:
+(pass) ZipPackage > caps the bytes inflated across all member reads, not just per member [0.74ms]
+(pass) ZipPackage > counts a member re-read many times (a slide image reused across slides) only once [0.30ms]
+
+packages\utils\test\ar\asar.test.ts:
+(pass) ASAR fixtures > lists nested directories and lazily extracts packed members [2.71ms]
+(pass) ASAR fixtures > rejects bad Pickle, oversized header, and escaping link fixtures precisely [0.20ms]
+(pass) ASAR fixtures > unpacked sibling reads verify the declared size [2.19ms]
+(pass) encodeAsar round-trips nested and zero-length members [0.56ms]
+(pass) maps links and executable flags and verifies integrity [0.42ms]
+(pass) rejects traversal, malformed records, truncation, and non-zero Pickle padding [0.30ms]
+(pass) enforces header, entry, member, and path limits before indexing [0.18ms]
+(pass) encodeAsar rejects unsafe, duplicate, and file-crossing paths [0.15ms]
+
+packages\utils\test\ar\cab.test.ts:
+(pass) Microsoft Cabinet fixtures > indexes nested paths and extracts uncompressed folder members [2.05ms]
+(pass) Microsoft Cabinet fixtures > carries the MSZIP dictionary across CFDATA blocks and caches the decoded folder [0.51ms]
+(pass) Microsoft Cabinet fixtures > extracts known-good libmspack MSZIP and LZX folders and detects Quantum [1.56ms]
+(pass) Microsoft Cabinet fixtures > decodes LZX uncompressed blocks and applies the intra-frame E8 transform [0.24ms]
+(pass) Microsoft Cabinet fixtures > skips CFHEADER, CFFOLDER, and CFDATA reserve areas while verifying the block checksum [0.12ms]
+(pass) drops a member path that escapes the archive root [0.22ms]
+(pass) honors UTF-8 names and maps CAB directory attributes to Unix mode bits [0.21ms]
+(pass) rejects truncation, multi-volume links, checksum damage, and invalid MSZIP framing [0.51ms]
+(pass) detects unsupported compression parameters and verifies extraction size [0.22ms]
+(pass) enforces index, entry, member, path, and in-memory folder limits [0.19ms]
+
+packages\utils\test\ar\checksums.test.ts:
+(pass) ar checksums > computes the CRC-32/IEEE check value and chains via seed [0.04ms]
+(pass) ar checksums > computes the CRC-64/XZ check value and chains via seed [0.09ms]
+(pass) ar checksums > computes the CRC-16/ARC check value and chains via seed [0.04ms]
+
+packages\utils\test\ar\codecs.test.ts:
+(pass) bzip2 decoder > decodes a level-1 multi-block stream byte-identically [95.44ms]
+(pass) bzip2 decoder > decodes a level-9 multi-block stream byte-identically [281.24ms]
+(pass) bzip2 decoder > decodes concatenated streams [0.71ms]
+(pass) bzip2 decoder > rejects truncated streams and bad block CRCs [106.70ms]
+(pass) bzip2 decoder > enforces maxOutput before expansion can overrun it [4.49ms]
+(pass) bzip2 decoder > sniffing rejects partial and invalid signatures [0.06ms]
+(pass) ncompress LZW decoder > decodes a 16-bit block-mode stream byte-identically [8.44ms]
+(pass) ncompress LZW decoder > resets block-mode state after a CLEAR code group [0.10ms]
+(pass) ncompress LZW decoder > rejects truncated headers and reserved flags [0.11ms]
+(pass) ncompress LZW decoder > rejects corrupt codes and fixture truncation [5.33ms]
+(pass) ncompress LZW decoder > enforces maxOutput during dictionary expansion [0.27ms]
+(pass) ncompress LZW decoder > sniffing requires both magic bytes [0.05ms]
+
+packages\utils\test\ar\cpio.test.ts:
+(pass) CPIO > lists and extracts newc [1.42ms]
+(pass) CPIO > lists and extracts crc [0.42ms]
+(pass) CPIO > lists and extracts odc [0.14ms]
+(pass) CPIO > lists and extracts old binary little-endian [0.09ms]
+(pass) CPIO > lists and extracts old binary big-endian [0.14ms]
+(pass) CPIO > reads a bsdtar-created portable archive [0.33ms]
+(pass) CPIO > skips device nodes, FIFOs, and sockets safely [0.23ms]
+(pass) CPIO > verifies CRC payload checksums when extracting [0.37ms]
+(pass) CPIO > requires a complete stream and TRAILER!!! [0.33ms]
+(pass) CPIO > drops traversal paths while retaining safe members [0.21ms]
+(pass) CPIO > rejects unsupported wire magic [0.14ms]
+(pass) RPM > parses headers, decompresses gzip, and strips leading ./ [3.73ms]
+(pass) RPM > decompresses bzip2 payloads [0.56ms]
+(pass) RPM > decompresses xz payloads [2.62ms]
+(pass) RPM > decompresses zstd payloads [0.89ms]
+(pass) RPM > decompresses lzma payloads [0.61ms]
+(pass) RPM > decompresses end-marked LZMA payloads with unknown declared size [0.58ms]
+(pass) RPM > falls back to payload magic when the compressor tag is unknown [2.12ms]
+(pass) RPM > reports unsupported payload formats with package identity [0.22ms]
+(pass) RPM > rejects truncated and unsupported-compressor payloads [0.23ms]
+
+packages\utils\test\ar\extract-symlinks.test.ts:
+(pass) extractArchive symlink handling > refuses to overwrite an occupied symlink-copy destination [4.74ms]
+(skip) extractArchive symlink handling > refuses to follow an occupied symlink-copy destination
+(skip) extractArchive symlink handling > materializes zip symlinks as real symlinks
+(pass) extractArchive symlink handling > extracts directory aliases and skips dangling links on Windows EPERM [7.68ms]
+(skip) extractArchive symlink handling > materializes tar directory aliases as real symlinks
+(pass) extractArchive symlink handling > degrades directory symlinks to junctions and file symlinks to copies on Windows EPERM [4.32ms]
+
+packages\utils\test\ar\iso.test.ts:
+(pass) ISO 9660 fixtures > prefers Joliet names and lists deep directories and Rock Ridge links [3.12ms]
+(pass) ISO 9660 fixtures > extracts file extents lazily and verifies declared sizes [1.05ms]
+(pass) drops a Joliet path that escapes the archive root [1.33ms]
+(pass) rejects truncation, mismatched both-endian fields, and Rock Ridge relocation [0.78ms]
+(pass) detects High Sierra and UDF-only images with precise errors [0.19ms]
+(pass) enforces metadata, entry, member, and path limits [0.31ms]
+(pass) accepts zero-length records with junk extents (bsdtar symlink Joliet entries) [0.37ms]
+
+packages\utils\test\ar\legacy-dos.test.ts:
+(pass) LZH/LHA > sniffs valid headers and rejects unrelated bytes [0.13ms]
+(pass) LZH/LHA > indexes header levels and nested entries: lzh-level0-lh5.lzh (lh5) [1.88ms]
+(pass) LZH/LHA > indexes header levels and nested entries: lzh-level1-lh6.lzh (lh6) [0.39ms]
+(pass) LZH/LHA > indexes header levels and nested entries: lzh-level2-lh7.lzh (lh7) [0.18ms]
+(pass) LZH/LHA > decodes every static-Huffman method in lzh-level0-lh4.lzh [0.31ms]
+(pass) LZH/LHA > decodes every static-Huffman method in lzh-level0-lh5.lzh [0.17ms]
+(pass) LZH/LHA > decodes every static-Huffman method in lzh-level1-lh6.lzh [0.15ms]
+(pass) LZH/LHA > decodes every static-Huffman method in lzh-level2-lh7.lzh [0.17ms]
+(pass) LZH/LHA > decodes stored -lz4- and legacy -lzs- streams [0.26ms]
+(pass) LZH/LHA > prefers Unicode path extensions and exposes Unix metadata [0.29ms]
+(pass) LZH/LHA > drops traversal paths [0.08ms]
+(pass) LZH/LHA > reports unsupported dynamic Huffman precisely [0.08ms]
+(pass) LZH/LHA > rejects truncated headers and corrupt member CRCs [0.23ms]
+(pass) ARJ > sniffs a CRC-valid main header and rejects unrelated bytes [0.14ms]
+(pass) ARJ > decodes method 0 [0.78ms]
+(pass) ARJ > decodes method 1 [0.14ms]
+(pass) ARJ > decodes method 2 [0.11ms]
+(pass) ARJ > decodes method 3 [0.08ms]
+(pass) ARJ > decodes method 4 [0.38ms]
+(pass) ARJ > exposes Unix mode and host timestamp metadata [0.16ms]
+(pass) ARJ > detects unsupported archive features in arj-encrypted.arj [0.06ms]
+(pass) ARJ > detects unsupported archive features in arj-multivolume.arj [0.02ms]
+(pass) ARJ > reports unknown methods when extraction is requested [0.09ms]
+(pass) ARJ > drops traversal paths while retaining safe entries [0.12ms]
+(pass) ARJ > rejects truncated and header-CRC-corrupt input [0.12ms]
+
+packages\utils\test\ar\rar.test.ts:
+(pass) RAR5 > sniffs, indexes Unicode and nested paths, and extracts stored members [2.19ms]
+(pass) RAR5 > indexes range sources without reading member payloads [0.34ms]
+(pass) RAR5 > finds an archive after an SFX prefix [0.27ms]
+(pass) RAR5 > extracts compressed members including x86-filtered data [3.44ms]
+(pass) RAR5 > reverses a forced RAR5 x86 filter [2.31ms]
+(pass) RAR5 > decodes solid predecessors when a later member is requested first [2.05ms]
+(pass) RAR5 > indexes Unix symlinks [0.29ms]
+(pass) RAR5 > rejects file/header encryption and volumes precisely [0.30ms]
+(pass) RAR4 > indexes Unicode paths and extracts stored members with Unix metadata [0.92ms]
+(pass) RAR4 > decodes RAR 2.9 LZ/Huffman members [1.73ms]
+(pass) RAR4 > indexes RAR4 Unix symlinks [0.25ms]
+(pass) RAR4 > detects unsupported RAR4 PPMd blocks [0.25ms]
+(pass) RAR4 > rejects encrypted RAR4 data and headers [0.22ms]
+(pass) RAR corruption, traversal, and limits fail safely [0.73ms]
+
+packages\utils\test\ar\sevenzip.test.ts:
+(pass) 7z container > sniffs, indexes nested directories, and preserves time and Unix mode [3.08ms]
+(pass) 7z container > extracts Copy, LZMA, LZMA2, Delta, and BCJ x86 folders byte-identically [1.26ms]
+(pass) 7z container > shares one decoded folder across solid members requested out of order [0.48ms]
+(pass) 7z container > models Unix symlinks from attributes and payload [0.43ms]
+(pass) 7z container > drops traversal names without disturbing stream mapping [0.13ms]
+(pass) 7z container > rejects encrypted headers and unsupported PPMd precisely [0.23ms]
+(pass) 7z container > detects truncation, payload corruption, and member-size limits [0.29ms]
+
+packages\utils\test\ar\source.test.ts:
+(pass) ar remote sources > lists and reads a remote zip via ranged requests without a full download [7.53ms]
+(pass) ar remote sources > falls back to one bounded buffered download when Range is ignored [1.00ms]
+(pass) ar remote sources > rejects a no-Range body larger than the fallback cap [0.24ms]
+(pass) ar remote sources > coalesces small reads into shared cached block fetches [0.39ms]
+
+packages\utils\test\ar\tar-range.test.ts:
+(pass) plain tar range reads > lists past the in-memory ceiling without reading unrelated payloads [0.92ms]
+(pass) plain tar range reads > opens a plain tar above a lowered in-memory limit through the public API [0.33ms]
+(pass) plain tar range reads > preserves PAX and GNU names, links, and sparse metadata with ranged indexing [1.35ms]
+(pass) plain tar range reads > rejects truncated headers, payloads, and short selected-member reads [0.28ms]
+(pass) plain tar range reads > keeps corrupt-header, entry, path, and metadata limits on the ranged path [0.22ms]
+(pass) plain tar range reads > rejects unsafe source and member sizes and wraps source failures [0.71ms]
+
+packages\utils\test\ar\tar.test.ts:
+(pass) tar reader > indexes ustar paths, modes, mtimes, directories, and member bytes [0.73ms]
+(pass) tar reader > reads a whole ByteSource once and rejects short source reads [0.17ms]
+(pass) tar reader > applies PAX local long paths and global set/delete records [0.60ms]
+(pass) tar reader > applies GNU L and K long records [0.33ms]
+(pass) tar reader > resolves hard links, relative file symlinks, and directory aliases [0.27ms]
+(pass) tar reader > rejects dependency cycles while preserving self-cyclic and dangling symlink records [0.27ms]
+(pass) tar reader > recognizes GNU sparse PAX 0.0, 0.1, and 1.0 but rejects extraction precisely [0.61ms]
+(pass) tar reader > consumes old-GNU sparse continuation metadata before later members [0.14ms]
+(pass) tar reader > accepts base-256 numerics, signed checksums, and old-GNU rename records [0.52ms]
+(pass) tar reader > drops traversal entries and rejects corrupt, truncated, unterminated, or multi-volume archives [0.34ms]
+(pass) tar reader > enforces archive, member, path, entry, and metadata limits [0.26ms]
+(pass) compressed tar past maxInMemorySize > tar.gz lists and reads members in any order [8.05ms]
+(pass) compressed tar past maxInMemorySize > tar.zst lists and reads members in any order [2.66ms]
+(pass) compressed tar past maxInMemorySize > reading every member in archive order decompresses the stream once [2.23ms]
+(pass) compressed tar past maxInMemorySize > a streamed member read holds only the member's bytes [1.41ms]
+(pass) compressed tar past maxInMemorySize > rejects a stream whose gzip trailer is cut off [1.17ms]
+(pass) compressed tar past maxInMemorySize > a stream that is not a tar fails on the in-memory limit [0.59ms]
+(pass) compressed tar past maxInMemorySize > a decompression bomb stops at maxStreamSize [0.61ms]
+(pass) tar writer > is deterministic, creates parent directories, and round-trips PAX paths [0.83ms]
+(pass) tar writer > supports explicit empty directories and rejects unsafe or conflicting paths [0.24ms]
+(pass) tar writer > empty output is a valid two-zero-block tar [0.09ms]
+
+packages\utils\test\ar\unix-ar.test.ts:
+(pass) Unix ar > reads BSD short and extended names from bsdtar [1.10ms]
+(pass) Unix ar > handles Darwin ar NUL-padded BSD names and skips its symbol table [0.31ms]
+(pass) Unix ar > resolves GNU long names, creates parents, and drops traversal [0.25ms]
+(pass) Unix ar > accepts blank optional numeric fields [0.16ms]
+(pass) Unix ar > lists COFF import-library members without parsing COFF payloads [0.17ms]
+(pass) Unix ar > indexes with ranges and defers ordinary member payload reads [0.16ms]
+(pass) Unix ar > rejects truncation, malformed headers, missing long tables, and configured limits [0.33ms]
+(pass) deb > presents debian-binary, prefixed control files, and data at root [1.82ms]
+(pass) deb > expands uncompressed control tar members [0.53ms]
+(pass) deb > expands bzip2 control tar members [0.77ms]
+(pass) deb > expands xz control tar members [1.32ms]
+(pass) deb > expands zstd control tar members [1.02ms]
+(pass) deb > expands LZMA-alone control tar members [37.61ms]
+(pass) deb > requires debian-binary first and rejects unsupported control compression [1.07ms]
+
+packages\utils\test\ar\xz.test.ts:
+(pass) XZ container > sniffs and verifies none/CRC32/CRC64/SHA-256 stream checks [0.81ms]
+(pass) XZ container > decodes Delta and x86 BCJ filter chains [0.83ms]
+(pass) XZ container > decodes and validates a multi-block threaded stream [1.14ms]
+(pass) XZ container > decodes unknown-size LZMA-alone streams through their end marker [0.30ms]
+(pass) XZ container > rejects corrupt checks, truncation, unsupported filters, and output overflow [0.33ms]
+
+packages\utils\test\ar\zip.test.ts:
+(pass) ZIP fixtures > indexes the central directory with bounded ranged reads and extracts stored and deflated members [0.58ms]
+(pass) ZIP fixtures > extracts zip-bzip2.zip using BZIP2 (12) [1.48ms]
+(pass) ZIP fixtures > extracts zip-lzma.zip using LZMA (14) [0.14ms]
+(pass) ZIP fixtures > extracts zip-zstd.zip using deprecated Zstandard (20) [3.44ms]
+(pass) ZIP fixtures > extracts zip-zstd93.zip using Zstandard (93) [0.34ms]
+(pass) ZIP fixtures > extracts zip-xz.zip using XZ (95) [0.20ms]
+(pass) ZIP fixtures > reads ZIP64 entry metadata, data descriptors, and windows-1252 names [0.59ms]
+(pass) ZIP fixtures > surfaces Unix modes and resolves a symlink whose payload is read while indexing [0.31ms]
+(pass) encodeZip round-trips lazily and through the eager document-converter API [0.72ms]
+(pass) encodeZip emits interoperable ZIP64 end records at the 16-bit entry-count boundary [176.94ms]
+(pass) drops traversal names and rejects encryption, truncation, unsupported methods, and corrupt payloads [7.46ms]
+(pass) enforces entry, index, member, and path limits before metadata-driven work [0.32ms]
+
+38 tests skipped:
+(skip) network: downloads and installs the pinned Chrome-for-Testing build
+(skip) XDG-aware runtime paths > routes skill descriptions db and predict state under an initialized $XDG_DATA_HOME/omp
+(skip) XDG-aware runtime paths > adopts legacy predict state once when XDG relocates it
+(skip) XDG-aware runtime paths > shares the global daemon runtime dir across profiles and custom agent dirs
+(skip) filterChildShellEnv > keeps filtering after the process working directory is deleted
+(skip) postmortem expected cleanup errors > prints recovery commands once when repeated SIGTERMs stop the process
+(skip) postmortem expected cleanup errors > finishes an async late registration before a SIGTERM exit
+(skip) postmortem broken-pipe handling > runs cleanup and exits 0 when a registered stdout consumer closes early
+(skip) setProcessName > sets /proc/self/comm on Linux
+(skip) refreshShellConfigCache > keeps a launcher-exported value the project's dotenv file repeats, and drops dotenv-only values
+(skip) resolveWindowsShell > falls back to cmd.exe instead of failing when no bash exists
+(skip) ptree kill without a usable native process handle > still ends a SIGTERM-ignoring child when the handle lookup throws
+(skip) ptree kill without a usable native process handle > still ends a SIGTERM-ignoring child when native termination rejects
+(skip) ptree timeout > kills descendants adopted while an AbortSignal races the timeout sweep
+(skip) ptree timeout > falls back after the first libc soname is unavailable
+(skip) ptree timeout > does not leak supervisor-only environment into the command
+(skip) ptree timeout > preserves caller-supplied BUN_BE_BUN for the command
+(skip) ptree timeout > supervises commands without a mounted procfs
+(skip) ptree timeout > keeps reading inherited stdout until the configured command deadline
+(skip) ptree timeout > rejects text when the deadline fires after the root exits
+(skip) ptree timeout > rejects blob when the deadline fires after the root exits
+(skip) ptree timeout > rejects json when the deadline fires after the root exits
+(skip) ptree timeout > rejects arrayBuffer when the deadline fires after the root exits
+(skip) ptree timeout > rejects bytes when the deadline fires after the root exits
+(skip) ptree timeout > keeps reading inherited stdout until EOF without a timeout
+(skip) ptree timeout > terminates a detached group that holds stdout past the command deadline
+(skip) ptree timeout > throws NonZeroExitError by default when the child exits nonzero
+(skip) ptree timeout > completes when an orphan holds stdout past the root's exit
+(skip) ptree timeout > completes when an orphan holds stderr past the root's exit
+(skip) ptree timeout > completes when a nonzero exit races an orphan holding stderr
+(skip) ptree timeout > preserves the timeout reason when nonzero normalization waits for stderr
+(skip) stderr guard > suppresses same-terminal fd-2 writes by default
+(skip) $which > uses the current process PATH for each cached lookup
+(skip) $which > resolves absolute PATH entries while ignoring relative ones when requireAbsolutePaths is true
+(skip) $whichAll > returns every PATH match in PATH order, skipping misses
+(skip) extractArchive symlink handling > refuses to follow an occupied symlink-copy destination
+(skip) extractArchive symlink handling > materializes zip symlinks as real symlinks
+(skip) extractArchive symlink handling > materializes tar directory aliases as real symlinks
+
+
+2 tests failed:
+(fail) install streams and extracts stored, deflated, nested, executable, and symlink entries [32.71ms]
+(fail) project directory state > enters an accessible fallback when process.cwd fails [3.23ms]
+--------------------------------------------------------------------------------------|---------|---------|-------------------
+File                                                                                  | % Funcs | % Lines | Uncovered Line #s
+--------------------------------------------------------------------------------------|---------|---------|-------------------
+All files                                                                             |   79.33 |   78.95 |
+ packages\natives\native\desktop-adapter.js                                           |   75.00 |   86.11 | 39-43
+ packages\natives\native\embedded-addon.js                                            |  100.00 |  100.00 | 
+ packages\natives\native\index.js                                                     |  100.00 |  100.00 | 
+ packages\natives\native\loader-state.js                                              |   48.89 |   43.25 | 51-53,62-65,69,74-79,115,185,187,196-198,201-207,210,227-230,250-258,262,286-291,293,297-303,311,314-316,319-324,328,331-335,337,340,344-353,355,363-371,373,376,412-414,416-422,433,440-446,449,452-453,456-463,467-475,478,482-485,488-494,496-497,499,504-506,508-514,517-523,537-540,542-544,546,548-553,556,559-563,566,575-585,599-600,615-618,622-629,631-635,666-667,689-692,703-707,709-714,732-733,750-762,765-766,792,809-811,869,875,887-889,893-896,898,900-903
+ packages\natives\native\path.js                                                      |   66.67 |   81.82 | 19-20
+ packages\natives\native\version-sentinel.js                                          |   25.00 |   26.47 | 33-36,47-56,58,74-75,78-80,82,91-94
+ packages\utils\src\abortable.ts                                                      |   55.56 |   63.33 | 53,57,80-82,84-90,92,94,103-107,109-111
+ packages\utils\src\acp.ts                                                            |  100.00 |  100.00 | 
+ packages\utils\src\acp\connection.ts                                                 |   26.83 |   28.35 | 87-88,91-92,114-115,118-119,122-124,127-128,131-132,135-136,139-140,143-144,147-148,159-162,165-166,169-170,173-174,177-178,181-182,206-207,210-211,218-219,222-223,226-227,230-231,234-235,238-239,242-243,246-247,250-251,258-259,267-284,287-288,291-294,310-352,357-360,364-368,370-371
+ packages\utils\src\acp\protocol.ts                                                   |  100.00 |  100.00 | 
+ packages\utils\src\acp\schema.ts                                                     |   61.54 |   60.95 | 36-38,43-44,49-54,74-82,94,102-119,130,135
+ packages\utils\src\acp\stream.ts                                                     |   66.67 |   63.79 | 22-27,30-35,56-63,79
+ packages\utils\src\acp\transport.ts                                                  |   78.57 |   93.05 | 90-91,183-186,211-212,280-281,315,330,350
+ packages\utils\src\ar\arj.ts                                                         |   93.33 |   84.77 | 30,34-43,64,74,83-86,88-89,104,139,145,149,179,190-193,195-196,201,203,234-236,245,308
+ packages\utils\src\ar\asar.ts                                                        |   88.89 |   83.53 | 50-51,66,69,72,75,78,82,86,117,122-126,129,150,153,157,160,167-171,173-174,176-177,188,195,200,205,210,222-223,228-229,232,261,268,272,277,283,299,312,323,368,417,440,452,457,462-463,478
+ packages\utils\src\ar\bytes.ts                                                       |   75.00 |   71.43 | 18,32-35,37,68-69,73-75,77
+ packages\utils\src\ar\cab.ts                                                         |  100.00 |   89.12 | 43,48-50,82-83,96,133,136,146,152,170,186,198-201,207-209,237,248,256,259,267,279,285,304,317,340,375
+ packages\utils\src\ar\checksums.ts                                                   |  100.00 |  100.00 | 
+ packages\utils\src\ar\codecs\bzip2.ts                                                |  100.00 |   91.81 | 102,143,160,170,195,205,209,220,224,237,255,282,293,308,321,334,379-381,383-385,403,410,423,429,449,487
+ packages\utils\src\ar\codecs\gzip.ts                                                 |  100.00 |   88.24 | 18-19
+ packages\utils\src\ar\codecs\lzma.ts                                                 |  100.00 |   93.77 | 197,209,288,302,326-328,346,354,359,366,387,389,392,409,411,424,426,433-435
+ packages\utils\src\ar\codecs\lzw.ts                                                  |  100.00 |   92.06 | 38,88,98,104,113,148,158,170-171,189
+ packages\utils\src\ar\codecs\lzx.ts                                                  |  100.00 |   87.50 | 25,45,48,80,88,114,133-139,176,192,216-217,236-238,255,260,269,285,293-295,297-299,302,306-308,318
+ packages\utils\src\ar\codecs\xz.ts                                                   |   56.52 |   53.03 | 12-16,19-20,23-27,52,70-71,78-79,85,89,107,113-114,122,130,140,143,145,194-198,214-227,231-238,242-257,261-266,269-273,277-300,305-320,325-339,341-348,350-357,359-361,363-365,376,380,385-407,430,433,435,447,456,458,460,475,483,515,520
+ packages\utils\src\ar\codecs\zstd.ts                                                 |  100.00 |   88.24 | 18-19
+ packages\utils\src\ar\cpio.ts                                                        |  100.00 |   96.18 | 67,71,113,152,191-192,206,212,258,333,375
+ packages\utils\src\ar\deb.ts                                                         |  100.00 |   88.62 | 26,38-45,107,117-118,124,153
+ packages\utils\src\ar\entries.ts                                                     |  100.00 |   88.14 | 23-24,28,84-86,96
+ packages\utils\src\ar\error.ts                                                       |  100.00 |  100.00 | 
+ packages\utils\src\ar\index.ts                                                       |  100.00 |  100.00 | 
+ packages\utils\src\ar\iso.ts                                                         |  100.00 |   83.58 | 104-112,121,188,203,210,232,236,301,305,319-320,339,369-376,378,383-398,403-404,416,477,506,532,554,579,597-604,606-608,614,624-645,658,710
+ packages\utils\src\ar\limits.ts                                                      |  100.00 |   91.67 | 41,53,69
+ packages\utils\src\ar\lzh.ts                                                         |   96.43 |   86.02 | 25,38,56,81,86,98,113,128,135-137,189-192,226,235,261-266,290-293,304,364-371,373-378,418,438-439,442,494-498,546,561,570,608-610,628-641
+ packages\utils\src\ar\open.ts                                                        |   50.00 |   59.12 | 43-44,49,73-77,79-83,85-91,94,98-100,102-104,108-111,113-117,126-128,130-134,137-140,142,149,153-155,181,212,216
+ packages\utils\src\ar\paths.ts                                                       |  100.00 |   78.38 | 49-55,57
+ packages\utils\src\ar\rar.ts                                                         |   96.67 |   91.37 | 75,94,99,115-116,152,281,300,346-348,365,374-375,388-390,400,403-404,438-439,445-446,500-505,517-518,530-532,539,554,580,620,661-664,668-672,717-719
+ packages\utils\src\ar\rar\rar4-decoder.ts                                            |   85.71 |   80.83 | 64-65,111,160,209,219-221,247-249,252,270-282,285,294-299,315-321,325,364,373-377,395-404,406,411-412,415-419,446-448,457-458
+ packages\utils\src\ar\rar\rar5-decoder.ts                                            |   88.24 |   89.10 | 50-56,61-62,127,168,174,246-247,262-267,320,367-370,375-381,398-399
+ packages\utils\src\ar\reader.ts                                                      |  100.00 |   90.10 | 54,59,76,85,88,130,135,139,142,145
+ packages\utils\src\ar\registry.ts                                                    |   62.50 |   79.52 | 78,82-88,91,97-98,100-101,106-109,111-117,128-129,235-237,241-244,246
+ packages\utils\src\ar\rpm.ts                                                         |  100.00 |   90.24 | 57,89-90,94,97,104,109-110,114,128,138-139,188,236-241,253,261,273,278,313
+ packages\utils\src\ar\sevenzip.ts                                                    |   95.12 |   89.07 | 39,66,75-76,130,144-146,152,172,190,199-204,231-234,260,285,299-301,318,343,378-382,397-398,480-483,486,489,512,515,540-541,583-585,617,623,628,641,647
+ packages\utils\src\ar\sevenzip\decode.ts                                             |   80.00 |   67.60 | 36-75,120-124,161-163,174,178,190,197,209,215,226-227,234,236
+ packages\utils\src\ar\source.ts                                                      |   87.50 |   89.84 | 19,27,47,55,142,147-148,155,166-167,171,210,223
+ packages\utils\src\ar\tar.ts                                                         |   98.31 |   93.55 | 174,188,192,229,234-236,293,359,369,382,390-391,426,537-538,551-552,555-558,560-561,575-578,581-583,601,697-701,730,741-743,818-819,845,981-982
+ packages\utils\src\ar\types.ts                                                       |  100.00 |  100.00 | 
+ packages\utils\src\ar\unix-ar.ts                                                     |  100.00 |   91.42 | 38,41-43,101,133,181,202,209,224-227,239,245-247,253,266,305
+ packages\utils\src\ar\write.ts                                                       |   33.33 |   59.46 | 18-19,37-44,49-52,54
+ packages\utils\src\ar\zip-package.ts                                                 |  100.00 |  100.00 | 
+ packages\utils\src\ar\zip.ts                                                         |  100.00 |   91.09 | 98,103,107,131,136,150,163,176,185,199,207,237,239,269-273,279,282,323-324,345,349,354-355,357-358,393,406,410,413-415,420-422,426,430-432,455,457,478,561,604-605,637,674,678
+ packages\utils\src\async.ts                                                          |   42.86 |   22.58 | 37-41,43-45,48-55,57-61,64-65,68-74,76-81,83,85,100,104,106,108,112-126,129-134,136-138,140,142-143,147-149
+ packages\utils\src\binary.ts                                                         |  100.00 |  100.00 | 
+ packages\utils\src\browsers.ts                                                       |   78.57 |   93.06 | 70-76,127,194,205
+ packages\utils\src\chalk.ts                                                          |   87.50 |   90.53 | 203,207-208,210-211,216,225-229,231,248,295-296,321
+ packages\utils\src\cli.ts                                                            |   93.33 |   81.42 | 24-26,229,233,237-240,242,244-248,251,255,267-270,277-282,287,394-397,400,451,461-462,473-474,483-485,505
+ packages\utils\src\color.ts                                                          |   65.38 |   47.21 | 67-70,72-74,76-80,83-87,93-95,97-101,103-134,137-141,147-148,154-155,161-165,189-193,195-196,198-199,201,248-254,256-257,333,335-337,339-347,349-357,359-366,368,372-381,392-399,403-405
+ packages\utils\src\dates.ts                                                          |  100.00 |   99.35 | 138
+ packages\utils\src\dirs.ts                                                           |   37.60 |   53.92 | 110-111,128-129,148-153,155-156,214-217,242,245,282-286,297-302,307-312,320-325,390-398,400-402,404-406,416-422,445-446,469,637-638,646-647,655-656,670,700-702,704,708-709,713-714,718-719,723-724,760-762,772-773,777-778,782-783,787-788,792-793,797-798,802-803,807-808,812-813,817-818,829-830,834-835,843-846,852-855,862-865,869-870,878-881,885-886,890-891,895-896,904-905,919-920,924-925,929-930,934-935,939-940,944-945,958-959,963-964,968-969,973-974,978-979,982-983,1003-1004,1008-1009,1013-1014,1018-1019,1023-1024,1028-1029,1033-1034,1038-1039,1048-1049,1053-1054,1058-1059,1069-1075,1090-1097,1100,1105-1108,1112-1113,1117-1118,1122-1123,1127-1129,1133-1134,1138-1140,1142,1150-1151,1155-1156,1160-1163,1171-1172,1176-1177,1181-1182,1190-1192,1194,1198-1200,1202,1218-1220,1262,1270,1272-1277,1279
+ packages\utils\src\docx.ts                                                           |  100.00 |  100.00 | 
+ packages\utils\src\docx\converter.ts                                                 |   95.12 |   95.58 | 310-316,350,381-382,390-391,400-401,447,467,478,482,484,640
+ packages\utils\src\docx\xml.ts                                                       |  100.00 |   74.14 | 25-37,61-63,70-73,76-80,89-92,102
+ packages\utils\src\dom.ts                                                            |  100.00 |  100.00 | 
+ packages\utils\src\dom\core.ts                                                       |   40.86 |   52.26 | 37-40,42-45,49-53,57-58,62-63,67-68,76-78,102-103,107-114,116-117,119,163-164,178-180,184-188,192-196,211-215,217-218,229-232,234-237,239,241-250,252-254,259-262,266-267,270,296-297,314-315,355,360-366,376-380,382,392-395,399-407,409-410,438-439,442-443,446-447,454-455,459-463,497-498,501-502,505-506,509-510,513-514,531-535,539-543,551-552,555-556,559-560,564-565,569-570,573-574,578-579,583-585,589-590,594-599,603-609,613-614,617-618,621-622,631,634-636,639-644,649-650,654-657,659-661,665-668,710-712,716-718,732-733,737-738,762,784-793,796-801,803,805-808,810-811,813-814,818-819,837-841,848-849,855-856,878-879,916-921,928,938,942-944,948-950,954-955,961,985-986,989-990,994-999,1003-1004,1008-1009,1012-1013,1017-1018,1021-1022,1029-1030,1033-1034,1046-1047,1051-1052,1056-1057,1061-1062,1066-1067,1071-1072,1075-1078,1086-1088,1091-1092,1095-1097,1100-1101,1104-1105,1108-1109,1112-1113,1116-1117,1120-1121,1124-1128,1130-1131,1152-1153,1163-1165,1173-1177,1179,1182-1183,1186,1191-1192,1195-1196,1206,1220-1221,1225-1226,1234,1254-1259,1263-1266,1270-1273,1277-1278,1281-1284,1320-1321,1325-1326,1330-1331,1335-1336,1422,1428,1444,1447-1452,1454,1483-1484,1495-1496
+ packages\utils\src\dom\parser.ts                                                     |   90.91 |   94.78 | 198,216,252-253,310-314,337-339,348,361,387-390
+ packages\utils\src\dom\selector.ts                                                   |   80.77 |   77.63 | 150-152,172,184-191,199-200,225-226,236-237,254-255,260-261,324,347-348,353-360,362,365-379,383-386,393-402,404-407,409-415,417,419-421,423,425-426,458,506
+ packages\utils\src\env.ts                                                            |   61.54 |   68.24 | 50-51,118-122,124-125,128-131,133,144-148,190-191,198-199,207-212,214,216,222-224,227-229,253-255,257-259,298,304-306,332-336,339,375-380,396-397,404-407,459-462,477-479,482-483
+ packages\utils\src\executable.ts                                                     |    0.00 |   10.00 | 6-11,13-15
+ packages\utils\src\fetch-retry.ts                                                    |   64.71 |   68.75 | 80-81,87-88,92-93,95-98,103-106,111-112,151-156,223-225,251-252,256,268,272-273,359,361,372,391-399,401,409,416,427,437-438,447-448,460-463,465-470,472,474-476,478-479,490-495,497,531-535,537-540,543-544
+ packages\utils\src\file-lock.ts                                                      |   85.71 |   90.57 | 43-44,59,70,73
+ packages\utils\src\format.ts                                                         |   18.18 |   34.67 | 39-42,44-49,53-55,75-80,82,89-92,98-100,106-112,114-119,125-129,135-136,140-141
+ packages\utils\src\frontmatter.ts                                                    |   90.00 |   92.68 | 15-17,93-94,158,174,187,203
+ packages\utils\src\fs-error.ts                                                       |   62.50 |   62.50 | 34-35,38-39,50-51
+ packages\utils\src\headers.ts                                                        |  100.00 |   95.83 | 103-104,126,129
+ packages\utils\src\incoming-json.ts                                                  |   98.55 |   94.48 | 312-313,316-317,351-352,382-383,402-403,471-472,475-476,482,498-499,510-512,566-567,621-622,782
+ packages\utils\src\index.ts                                                          |    0.00 |   61.11 | 46-47,50,52-53,57-60,64,78-79,82-84,87-94,97-100,103
+ packages\utils\src\json-lexer.ts                                                     |  100.00 |   92.28 | 307-309,313-321,325-330,465
+ packages\utils\src\json-parse.ts                                                     |  100.00 |   86.83 | 82-85,103-106,156-157,187,198,207-208,222,250,258-259,275,322-323,335,449,466-467,470-473,477-481,495,516-519,537,546-549,571-573
+ packages\utils\src\json.ts                                                           |   66.67 |   48.65 | 4-8,18-26,28-31,34
+ packages\utils\src\logger.ts                                                         |   52.00 |   38.89 | 42-45,51-55,71-76,88-93,95-101,103-110,112-115,118,120-123,125-127,129-132,135-141,144-150,154-157,161-164,176-177,185,196-202,204-207,209,289-291,328,341,410,424,438,452,470,496-506,508,511-512,520-523,526,532-535,540-541,543-547,549-550,552-553,557-559,561-566,590-595,597-609,619-626,628,631-636,670-672,676-694,697-698,701-704,720-721,724-728,730-735,738,741-745,747-748,750-751,756-764,766-769,771-777,779-780,783-789,791-794,798-802,804-809,812-813,815,818-821,824-830,832-852,854-855,857-859,861-864,866,870-874,876,878,898-901,928-930
+ packages\utils\src\logger\rotating-file.ts                                           |  100.00 |   92.24 | 92,101,161,171,215-219
+ packages\utils\src\loop-phase.ts                                                     |   87.50 |  100.00 | 
+ packages\utils\src\lru.ts                                                            |   93.33 |   90.00 | 56,59,79-80,160-164,172
+ packages\utils\src\marked.ts                                                         |  100.00 |  100.00 | 
+ packages\utils\src\marked\core.ts                                                    |   87.60 |   90.21 | 237-238,619-620,826,828,853,858,963,1058-1060,1096-1100,1102,1119,1175-1178,1279-1280,1365-1366,1416-1417,1432-1433,1472-1473,1491-1493,1500-1502,1527-1529,1541-1542,1566-1569,1571-1580,1583-1585,1587,1589,1600-1601,1603-1605,1612-1615,1619-1622,1624-1628,1630,1644-1649,1651-1653,1655,1665,1670-1672,1681-1682,1695-1696
+ packages\utils\src\marked\inline-closers.ts                                          |  100.00 |   98.31 | 274-275,277-278
+ packages\utils\src\marked\inline-text.ts                                             |  100.00 |  100.00 | 
+ packages\utils\src\materialize-string.ts                                             |    0.00 |    0.00 | 7-9
+ packages\utils\src\math-delimiters.ts                                                |   90.48 |   93.98 | 246-251,259-262
+ packages\utils\src\mermaid-ascii.ts                                                  |   50.00 |   46.67 | 26-28,30-33,36
+ packages\utils\src\mime.ts                                                           |    0.00 |   18.12 | 24-26,28,31-34,36-45,48-50,52-57,60-62,64,66-70,72,74-75,77-89,92,95,98-107,110-113,115-119,122-129,132-135,138,141-143,167-171,173-176,178,199-200,202-208,211-213,215,219-222,225-226,229-231,233
+ packages\utils\src\path-tree.ts                                                      |  100.00 |   96.36 | 73-74
+ packages\utils\src\path.ts                                                           |  100.00 |   85.29 | 35-36,38-39,41
+ packages\utils\src\peek-file.ts                                                      |  100.00 |   98.61 | 22
+ packages\utils\src\postmortem.ts                                                     |   19.51 |   17.00 | 87-94,96,123-138,154-158,160-163,179-187,190-201,207-217,222-231,234-242,245,247-250,252,255-257,261-266,268-274,276-280,285-290,293-301,304-307,381-387,405-407,411-416,437-440,450-453,455-461,488-492,495-504,510-519,565-567,577-579,582-586,589-599,602,605-611,615-616,619-621,632-637,640-641,644-647,649-650,652-653,657-664,669-672,678-683,685,691-692,695-696,698-701,705-707,709,713,723-726,728-732,734-739,742-746,748-754,757-762,765,771-774,777-778,780,785-787,828-831,833-845,847-854,857-859,861-863,867-869,872-873,876-878,883-885,893-894,908-912,915-916,918-919,922-923,926-930,940-941
+ packages\utils\src\process-name.ts                                                   |    0.00 |   12.00 | 32-37,39,42-50,52-55,57-58
+ packages\utils\src\procmgr.ts                                                        |   66.67 |   61.16 | 120-123,126-128,130-133,138,176-177,179-182,185,225-229,237-241,251-254,258,264-268,271,274-279,282
+ packages\utils\src\prompt.ts                                                         |   51.11 |   81.94 | 51-53,116,223-224,292,319-324,368,399-400,408-409,418-425,434-436,454-455,463-465,486-496,499,508-511,522-523,526-527
+ packages\utils\src\ptree.ts                                                          |   68.33 |   72.52 | 122-123,236-237,245,267-269,278-282,288-289,300-301,303-304,308-309,350-358,364-365,370-374,387,405-406,410-415,417-419,421,424-434,436,438-439,450-451,474-475,481,498-499,506,530-531,534-535,538-539,568,573,632,672-677,710-711,713-721,724-726,728-734
+ packages\utils\src\readability.ts                                                    |  100.00 |  100.00 | 
+ packages\utils\src\readability\readability.ts                                        |   90.00 |   88.28 | 87-110,120,224,411,418-419,432-435,445-446,448-451,454-455,477-483,491,494,501,588-589,647-648,653-655,706-710,785,817-818,824-831,833
+ packages\utils\src\readability\readerable.ts                                         |  100.00 |   93.75 | 37,50
+ packages\utils\src\ring.ts                                                           |  100.00 |  100.00 | 
+ packages\utils\src\runtime-install.ts                                                |   96.00 |   89.03 | 48-50,52,101-103,195-196,303-307,311-312,375-377,433-436,454-456
+ packages\utils\src\sanitize-text.ts                                                  |   71.43 |   63.74 | 116-122,125,127-133,135,145-151,154,156-163,165
+ packages\utils\src\slugify.ts                                                        |  100.00 |  100.00 | 
+ packages\utils\src\snowflake.ts                                                      |   73.33 |   74.58 | 59-60,62-63,65-66,97-98,101-102,107-108,111-112,128
+ packages\utils\src\sqlite.ts                                                         |   91.30 |   84.62 | 60-64,102-106,137-140,169,204,225-234,237,242-246,262,271-272,329-330,342-343,374
+ packages\utils\src\stderr-guard.ts                                                   |   16.67 |   14.63 | 36-39,42-52,56,65-72,99-103,105-107,111-118,122-125,127-130,132-134,154-160,162-163,172-179,185-186
+ packages\utils\src\stream.ts                                                         |  100.00 |   93.39 | 39,60,64,66-67,224,253-256,258,290,349,509-510,586-587,597-599,643-644
+ packages\utils\src\tab-spacing.ts                                                    |  100.00 |   92.74 | 70,87-88,95,99,122-123,153,165,185,238,261,325
+ packages\utils\src\temp.ts                                                           |   68.75 |   77.63 | 19-20,33-34,39,46-48,51-52,62,67-70,80,84
+ packages\utils\src\template.ts                                                       |   83.33 |   90.12 | 49-50,224,492-500,502-504,507-518,536,541-542,546-547,551-556,576-577
+ packages\utils\src\test-runtime.ts                                                   |  100.00 |  100.00 | 
+ packages\utils\src\timing-buffer.ts                                                  |    0.00 |    7.14 | 30-35,37,41-46
+ packages\utils\src\tls-fetch.ts                                                      |  100.00 |   95.00 | 104,133-134
+ packages\utils\src\turndown.ts                                                       |  100.00 |  100.00 | 
+ packages\utils\src\turndown\gfm.ts                                                   |   95.00 |   92.50 | 31-33,41,77-78
+ packages\utils\src\turndown\html.ts                                                  |   69.23 |   80.93 | 39-45,52-53,71-72,75-76,79-81,107-108,111-112,179-180,206-208,211-215,230-232,262-263,275-276
+ packages\utils\src\turndown\service.ts                                               |   96.67 |   94.14 | 144-146,150,192-193,220,274,313,346-352
+ packages\utils\src\turndown\types.ts                                                 |  100.00 |  100.00 | 
+ packages\utils\src\type-guards.ts                                                    |   25.00 |   22.22 | 6-8,11-12,15-16
+ packages\utils\src\version.ts                                                        |  100.00 |  100.00 | 
+ packages\utils\src\vterm.ts                                                          |  100.00 |  100.00 | 
+ packages\utils\src\vterm\buffer.ts                                                   |   59.38 |   73.20 | 48-49,84-85,94-95,104-105,109-110,119-120,124-125,129-130,134-135,139-140,149-150,165-166,235-236
+ packages\utils\src\vterm\query-responder.ts                                          |  100.00 |   95.35 | 97,104
+ packages\utils\src\vterm\terminal.ts                                                 |   72.00 |   63.55 | 169-171,175-177,180-181,210-217,219,230-231,264-272,293-299,303-318,345-350,356-384,389-391,395-397,404-418,425-427,431-440,471,493-494,525,528-529,532-536,539-542,549-553,566-569,576-583,587-591,594-597,620-623,626,628-631,634-639,642-643,652-658,676-677,687-707,709-720,722,744-745,750-752,794-806,836-837,842
+ packages\utils\src\which.ts                                                          |   54.55 |   64.24 | 84-87,89,94,96-98,102-104,108-110,113,119-121,123-127,131-137,139,142,146,191-195,197,214,242,257,277-283,285-287,289
+ packages\utils\src\worker-host.ts                                                    |   75.00 |   87.10 | 22-23,27-28
+ packages\utils\src\xml.ts                                                            |   93.75 |   85.10 | 100-101,181-182,185-186,224-226,248-259,261-263,277-283
+ packages\utils\src\yaml-config.ts                                                    |    0.00 |   50.00 | 6-7
+ packages\utils\test\ar\fixtures.ts                                                   |  100.00 |  100.00 | 
+ ..\..\..\..\Users\DVIDTK~1\AppData\Local\Temp\omp-runtime-uninstall-CVrnnm\config.js |  100.00 |  100.00 | 
+ ..\..\..\..\Users\DVIDTK~1\AppData\Local\Temp\omp-runtime-uninstall-CVrnnm\entry.mjs |  100.00 |  100.00 | 
+--------------------------------------------------------------------------------------|---------|---------|-------------------
+
+ 911 pass
+ 38 skip
+ 2 fail
+ 5165 expect() calls
+Ran 951 tests across 92 files. [10.82s]

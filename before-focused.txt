@@ -1,0 +1,27 @@
+bun test v1.4.4 (38afee6c8)
+
+packages\utils\test\peek-file.test.ts:
+(pass) peekFile > reads an exact header slice asynchronously [10.74ms]
+(pass) peekFile > reads an exact header slice synchronously [10.69ms]
+(pass) peekFile > keeps a retained 512-byte slice stable across later peeks [8.27ms]
+(pass) peekFile > gives callbacks Uint8Array slice copy semantics [7.56ms]
+(pass) peekFileTail > reads an exact tail slice ending at EOF with Uint8Array slice semantics [2.82ms]
+(pass) peekFileTail > returns the whole file when shorter than the budget [7.18ms]
+(pass) peekFileTail > returns empty for a non-positive budget [1.50ms]
+(pass) peekFileEnds > reads exact head and tail slices from a larger file [2.69ms]
+(pass) peekFileEnds > returns the whole file for both windows when it fits in the head budget [2.45ms]
+(pass) peekFileEnds > returns an empty tail when the suffix budget is zero [7.85ms]
+(pass) peekFileEnds > returns an empty head when the prefix budget is zero [2.62ms]
+(pass) peekFileEnds > returns two empty slices without opening when both budgets are zero [0.82ms]
+(pass) peekFileEnds > reads distinct head and tail content across 512-byte boundaries [9.59ms]
+---------------------------------|---------|---------|-------------------
+File                             | % Funcs | % Lines | Uncovered Line #s
+---------------------------------|---------|---------|-------------------
+All files                        |  100.00 |   93.06 |
+ packages\utils\src\peek-file.ts |  100.00 |   93.06 | 22,25,36,55,87
+---------------------------------|---------|---------|-------------------
+
+ 13 pass
+ 0 fail
+ 23 expect() calls
+Ran 13 tests across 1 file. [186.00ms]

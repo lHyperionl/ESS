@@ -1,0 +1,39 @@
+bun test v1.4.4 (38afee6c8)
+
+packages\utils\test\peek-file-errors.test.ts:
+(pass) file peek boundaries and cleanup > reads a synchronous header larger than the initial shared buffer [9.51ms]
+(pass) file peek boundaries and cleanup > returns the synchronous callback result without opening a file for a zero budget [1.21ms]
+(pass) file peek boundaries and cleanup > returns the asynchronous callback result without opening a file for a negative budget [1.01ms]
+(pass) file peek boundaries and cleanup > returns an empty tail and closes the handle for an empty file [2.37ms]
+(pass) file peek boundaries and cleanup > preserves a synchronous read error and closes the descriptor [6.47ms]
+(pass) file peek boundaries and cleanup > preserves an asynchronous read error and closes the handle [2.86ms]
+(pass) file peek boundaries and cleanup > closes the header handle when the consumer callback throws [7.74ms]
+(pass) file peek boundaries and cleanup > preserves a tail stat error and closes the handle [2.43ms]
+(pass) file peek boundaries and cleanup > closes the shared handle when the head-and-tail consumer throws [6.97ms]
+
+packages\utils\test\peek-file.test.ts:
+(pass) peekFile > reads an exact header slice asynchronously [3.21ms]
+(pass) peekFile > reads an exact header slice synchronously [2.55ms]
+(pass) peekFile > keeps a retained 512-byte slice stable across later peeks [3.44ms]
+(pass) peekFile > gives callbacks Uint8Array slice copy semantics [2.30ms]
+(pass) peekFileTail > reads an exact tail slice ending at EOF with Uint8Array slice semantics [2.53ms]
+(pass) peekFileTail > returns the whole file when shorter than the budget [2.22ms]
+(pass) peekFileTail > returns empty for a non-positive budget [1.37ms]
+(pass) peekFileEnds > reads exact head and tail slices from a larger file [2.40ms]
+(pass) peekFileEnds > returns the whole file for both windows when it fits in the head budget [2.20ms]
+(pass) peekFileEnds > returns an empty tail when the suffix budget is zero [2.31ms]
+(pass) peekFileEnds > returns an empty head when the prefix budget is zero [2.17ms]
+(pass) peekFileEnds > returns two empty slices without opening when both budgets are zero [0.77ms]
+(pass) peekFileEnds > reads distinct head and tail content across 512-byte boundaries [9.62ms]
+---------------------------------|---------|---------|-------------------
+File                             | % Funcs | % Lines | Uncovered Line #s
+---------------------------------|---------|---------|-------------------
+All files                        |   68.75 |   70.36 |
+ packages\utils\src\peek-file.ts |  100.00 |   98.61 | 22
+ packages\utils\src\temp.ts      |   37.50 |   42.11 | 19-20,29-30,33-34,39,46-48,51-52,59-62,67-70,80,84,101-102,107-108,113-121,126-127,130-136
+---------------------------------|---------|---------|-------------------
+
+ 22 pass
+ 0 fail
+ 43 expect() calls
+Ran 22 tests across 2 files. [171.00ms]

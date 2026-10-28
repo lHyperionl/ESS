@@ -1,0 +1,34 @@
+{
+  "commit": "4c6f8bb53df5bff45d3bf148ea45c79c22c60825",
+  "runtime": "Bun 1.4.4; Windows x64",
+  "target": "packages/utils/src/peek-file.ts",
+  "target_before": {
+    "LH": 67,
+    "LF": 72,
+    "FNH": 7,
+    "FNF": 7
+  },
+  "target_after": {
+    "LH": 71,
+    "LF": 72,
+    "FNH": 7,
+    "FNF": 7
+  },
+  "package_before": {
+    "LH": 18290,
+    "LF": 23177,
+    "FNH": 1741,
+    "FNF": 2307
+  },
+  "package_after": {
+    "LH": 18293,
+    "LF": 23177,
+    "FNH": 1741,
+    "FNF": 2307
+  },
+  "package_measured_source_files": 124,
+  "package_failures_before": 2,
+  "package_failures_after": 2,
+  "package_skips_before": 38,
+  "package_skips_after": 38
+}
